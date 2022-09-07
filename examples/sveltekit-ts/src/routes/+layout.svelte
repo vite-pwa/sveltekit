@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte'
 	import { browser, dev } from '$app/environment'
 
+	// const loadRPC = browser
 	const loadRPC = !dev && browser
 
 	let ReloadPrompt
@@ -14,6 +15,9 @@
 </script>
 
 <svelte:head>
+<!--
+	{#if browser}
+-->
 	{#if !dev}
 		<link rel="manifest" href="/manifest.webmanifest">
 	{/if}

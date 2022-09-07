@@ -14,11 +14,13 @@ const config: UserConfig = {
 		SvelteKitPWA({
 				srcDir: './src',
 				mode: 'development',
+				strategies: 'injectManifest',
+				filename: 'prompt-sw.ts',
 				scope: '/',
 				base: '/',
 				manifest: {
-					short_name: 'PWA Router',
-					name: 'PWA Router',
+					short_name: 'SvelteKit PWA',
+					name: 'SvelteKit PWA',
 					start_url: '/',
 					scope: '/',
 					display: 'standalone',
@@ -45,6 +47,11 @@ const config: UserConfig = {
 				},
 				workbox: {
 					globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
+				},
+				devOptions: {
+					enabled: false,
+					type: 'module',
+					navigateFallback: '/',
 				},
 			 	// if you have shared info in svelte config file put in a separate module and use it also here
 				kit: {}

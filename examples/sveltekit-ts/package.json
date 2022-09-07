@@ -2,6 +2,7 @@
 	"name": "sveltekit-ts",
 	"version": "0.0.0",
 	"scripts": {
+		"sw-dev": "vite dev",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
