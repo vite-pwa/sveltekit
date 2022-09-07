@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import logo from './svelte-logo.svg';
+
+	// replaced dynamically
+	const date = '__DATE__';
 </script>
 
 <header>
@@ -28,7 +31,7 @@
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		{ date }
 	</div>
 </header>
 
@@ -119,5 +122,10 @@
 
 	a:hover {
 		color: var(--accent-color);
+	}
+	nav + .corner {
+		width: 9rem;
+		font-size: 0.7rem;
+		align-self: center;
 	}
 </style>

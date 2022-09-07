@@ -46,7 +46,7 @@ const config: UserConfig = {
 				workbox: {
 					globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
 				},
-			 	// if you have shared info in svelte config file put in a separate module and use it here
+			 	// if you have shared info in svelte config file put in a separate module and use it also here
 				kit: {}
 			}
 		)]
