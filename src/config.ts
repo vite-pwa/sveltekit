@@ -1,19 +1,21 @@
 import type { ResolvedConfig } from 'vite'
 import type { ManifestTransform } from 'workbox-build'
 import type { BasePartial, GlobPartial, RequiredGlobDirectoryPartial } from 'workbox-build/src/types'
-import type { KitOptions, SvelteKitPWAOptions } from './types'
+import type { KitOptions } from './types'
+import {VitePWAOptions} from "vite-plugin-pwa";
 
 type WorkboxConfig = Partial<BasePartial & GlobPartial & RequiredGlobDirectoryPartial>
 
 export function configureSvelteKitOptions(
+    kit: KitOptions,
     viteOptions: ResolvedConfig,
-    options: Partial<SvelteKitPWAOptions>
+    options: Partial<VitePWAOptions>
 ) {
     const {
         base = viteOptions.base ?? '/',
         adapterFallback,
         outDir = '.svelte-kit',
-    } = options.kit ?? {}
+    } = kit
 
     // Vite will copy public folder to the globDirectory after pwa plugin runs:
     // globDirectory is the build folder.
@@ -51,7 +53,7 @@ export function configureSvelteKitOptions(
         config.dontCacheBustURLsMatching = /-[a-f0-9]{8}\./
 
     if (!config.manifestTransforms)
-        config.manifestTransforms = [createManifestTransform(base, options.kit)]
+        config.manifestTransforms = [createManifestTransform(base, kit)]
 }
 
 function createManifestTransform(base: string, options?: KitOptions): ManifestTransform {

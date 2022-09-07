@@ -1,10 +1,9 @@
 import type { Plugin } from 'vite'
 import type { SvelteKitPWAOptions } from './types'
-import type { VitePWAOptions } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import { configureSvelteKitOptions } from './config'
 
-export function SvelteKitPWA(userOptions: Partial<VitePWAOptions> = {}): Plugin[] {
+export function SvelteKitPWA(userOptions: Partial<SvelteKitPWAOptions> = {}): Plugin[] {
     if (!userOptions.integration)
         userOptions.integration = {}
 
@@ -13,8 +12,9 @@ export function SvelteKitPWA(userOptions: Partial<VitePWAOptions> = {}): Plugin[
         viteConfig,
         options
     ) => configureSvelteKitOptions(
+        userOptions.kit ?? {},
         viteConfig,
-        options as SvelteKitPWAOptions
+        options
     )
 
     return VitePWA(userOptions)
