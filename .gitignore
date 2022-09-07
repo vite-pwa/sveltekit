@@ -1,0 +1,8 @@
+node_modules
+.DS_Store
+dist
+dev-dist
+# intellij stuff
+.idea/
+# routify
+.routify/
