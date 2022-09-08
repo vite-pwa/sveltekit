@@ -1,6 +1,6 @@
 <p align='center'>
 <img src='https://vite-plugin-pwa.netlify.app/banner_light.svg' alt="vite-plugin-pwa - Zero-config PWA for Vite"><br>
-Zero-config PWA Framework-agnostic Plugin for Vite
+Zero-config PWA Framework-agnostic Plugin for SvelteKit
 </p>
 
 <p align='center'>
