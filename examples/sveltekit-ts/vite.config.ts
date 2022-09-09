@@ -9,6 +9,7 @@ const config: UserConfig = {
 		minify: false,
 	},
 	plugins: [
+		// @ts-expect-error not ready for Vite 3
 		replace({ __DATE__: new Date().toISOString(), __RELOAD_SW__: 'false' }),
 		sveltekit(),
 		SvelteKitPWA({
@@ -53,7 +54,7 @@ const config: UserConfig = {
 					type: 'module',
 					navigateFallback: '/',
 				},
-			 	// if you have shared info in svelte config file put in a separate module and use it also here
+				// if you have shared info in svelte config file put in a separate module and use it also herenr lint
 				kit: {}
 			}
 		)]

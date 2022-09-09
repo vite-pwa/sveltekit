@@ -1,7 +1,7 @@
 {
   "name": "@vite-pwa/sveltekit",
-  "version": "0.12.7",
   "type": "module",
+  "version": "0.12.7",
   "packageManager": "pnpm@7.11.0",
   "description": "Zero-config PWA for SvelteKit",
   "author": "antfu <anthonyfu117@hotmail.com>",
@@ -29,6 +29,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=16.14"
+  },
   "scripts": {
     "build": "unbuild",
     "lint": "eslint .",
@@ -57,8 +60,5 @@
     "vite": "^3.1.0",
     "vite-plugin-pwa": "file:vite-plugin-pwa-0.12.7.tgz",
     "workbox-window": "^6.5.4"
-  },
-  "engines": {
-    "node": ">=16.14"
   }
 }
