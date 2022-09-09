@@ -2,7 +2,7 @@ import type { ResolvedConfig } from 'vite'
 import type { ManifestTransform } from 'workbox-build'
 import type { BasePartial, GlobPartial, RequiredGlobDirectoryPartial } from 'workbox-build/src/types'
 import type { KitOptions } from './types'
-import {VitePWAOptions} from "vite-plugin-pwa";
+import type { VitePWAOptions } from 'vite-plugin-pwa'
 
 type WorkboxConfig = Partial<BasePartial & GlobPartial & RequiredGlobDirectoryPartial>
 
