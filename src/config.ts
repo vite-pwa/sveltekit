@@ -1,10 +1,7 @@
 import type { ResolvedConfig } from 'vite'
 import type { ManifestTransform } from 'workbox-build'
-import type { BasePartial, GlobPartial, RequiredGlobDirectoryPartial } from 'workbox-build/src/types'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import type { KitOptions } from './types'
-
-type WorkboxConfig = Partial<BasePartial & GlobPartial & RequiredGlobDirectoryPartial>
 
 export function configureSvelteKitOptions(
   kit: KitOptions,
@@ -25,7 +22,11 @@ export function configureSvelteKitOptions(
   if (typeof options.includeManifestIcons === 'undefined')
     options.includeManifestIcons = false
 
-  let config: WorkboxConfig
+  let config: Partial<
+    import('workbox-build').BasePartial
+    & import('workbox-build').GlobPartial
+    & import('workbox-build').RequiredGlobDirectoryPartial
+  >
 
   if (options.strategies === 'injectManifest') {
     options.injectManifest = options.injectManifest ?? {}
@@ -75,15 +76,14 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
       // client assets in `.svelte-kit/output/client` folder.
       // SSG pages in `.svelte-kit/output/prerendered/pages` folder.
       // fallback page in `.svelte-kit/output/prerendered` folder (fallback.html is the default).
-      if (url.startsWith('client/')) {
+      if (url.startsWith('client/'))
         url = url.slice(7)
-      }
-      else if (url.startsWith('prerendered/pages/')) {
+
+      else if (url.startsWith('prerendered/pages/'))
         url = url.slice(18)
-      }
-      else if (url === defaultAdapterFallback) {
+
+      else if (url === defaultAdapterFallback)
         url = adapterFallback!
-      }
 
       if (url.endsWith('.html')) {
         if (url.startsWith('/'))
