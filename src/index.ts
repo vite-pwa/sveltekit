@@ -57,11 +57,6 @@ export function webManifestLink() { return '${webManifest}'; }
 export function registerSWScript() { return undefined; }
             `
         }
-
-        // eslint-disable-next-line no-console
-        console.log(command)
-        // eslint-disable-next-line no-console
-        console.log(typeof api)
       },
 
       /*
