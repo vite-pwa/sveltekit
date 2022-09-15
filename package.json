@@ -24,12 +24,26 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
+    },
+    "./*": "./*",
+    "./types/client": {
+      "types": "./types/client.d.ts"
     }
   },
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types",
+    "*.d.ts"
   ],
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
   "engines": {
     "node": ">=16.14"
   },
@@ -40,9 +54,6 @@
     "prepublishOnly": "npm run build",
     "release": "npx bumpp --push --tag --commit && npm publish",
     "examples": "esno scripts/run-examples.ts"
-  },
-  "peerDependencies": {
-    "vite-plugin-pwa": "^0.12.7"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",

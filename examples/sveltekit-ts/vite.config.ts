@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
-import replace from '@rollup/plugin-replace'
+import replace from '@rollup/plugin-replace';
 
 const config: UserConfig = {
 	logLevel: 'info',
@@ -50,7 +50,7 @@ const config: UserConfig = {
 					globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
 				},
 				devOptions: {
-					enabled: false,
+					enabled: true,
 					type: 'module',
 					navigateFallback: '/',
 				},
