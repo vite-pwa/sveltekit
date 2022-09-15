@@ -16,17 +16,17 @@
 		"@sveltejs/adapter-static": "next",
 		"@sveltejs/kit": "next",
 		"@types/cookie": "^0.5.1",
-		"@typescript-eslint/eslint-plugin": "^5.36.2",
-		"@typescript-eslint/parser": "^5.36.2",
+		"@typescript-eslint/eslint-plugin": "^5.37.0",
+		"@typescript-eslint/parser": "^5.37.0",
 		"@vite-pwa/sveltekit": "workspace:*",
-		"eslint": "^8.23.0",
+		"eslint": "^8.23.1",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"svelte": "^3.50.0",
+		"svelte": "^3.50.1",
 		"svelte-check": "^2.9.0",
 		"svelte-preprocess": "^4.10.7",
 		"tslib": "^2.4.0",
-		"typescript": "^4.8.2",
-		"vite": "^3.1.0"
+		"typescript": "^4.8.3",
+		"vite": "^3.1.1"
 	},
 	"type": "module",
 	"dependencies": {

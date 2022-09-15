@@ -23,9 +23,12 @@ export function SvelteKitPWA(userOptions: Partial<SvelteKitPWAOptions> = {}): Pl
 
   const plugins = VitePWA(userOptions)
 
+  const virtual = 'virtual:vite-pwa/sveltekit'
+  const resolvedVirtual = `\0${virtual}.js`
+
   plugins.push(
     {
-      name: 'vite-plugin-pwa:sveltekit-client',
+      name: 'vite-plugin-pwa:sveltekit',
       enforce: 'pre',
       configResolved(viteConfig) {
         if (!viteConfig.build.ssr) {
@@ -33,6 +36,35 @@ export function SvelteKitPWA(userOptions: Partial<SvelteKitPWAOptions> = {}): Pl
           api = viteConfig.plugins.find(p => p.name === 'vite-plugin-pwa')?.api
         }
       },
+      resolveId(id) {
+        if (id === virtual)
+          return resolvedVirtual
+      },
+      load(id) {
+        if (id === resolvedVirtual) {
+          const pwaEnabled = api && !api.disabled && (command === 'build' || userOptions.devOptions?.enabled === true)
+          let webManifest = ''
+          if (pwaEnabled) {
+            const webManifestData = api!.webManifestData()
+            if (webManifestData)
+              webManifest = `<link rel="manifest" href="${webManifestData.href}"${webManifestData.useCredentials ? ' crossorigin="use-credentials"' : ''} />`
+          }
+          // TODO: add missing logic
+          return `
+export const pwaEnabled = ${pwaEnabled};
+export function registerDevServiceWorker() { return undefined; }
+export function webManifestLink() { return '${webManifest}'; }
+export function registerSWScript() { return undefined; }
+            `
+        }
+
+        // eslint-disable-next-line no-console
+        console.log(command)
+        // eslint-disable-next-line no-console
+        console.log(typeof api)
+      },
+
+      /*
       resolveId(id) {
         if (id === '$vite-pwa/sveltekit')
           return 'vite-pwa-sveltekit-pwa-enabled.js'
@@ -67,17 +99,18 @@ export function SvelteKitPWA(userOptions: Partial<SvelteKitPWAOptions> = {}): Pl
           }
         }
       },
+*/
     },
   )
 
   // escape curlies, backtick, \\t, \\r, \\n to avoid breaking output of {@html \`here\`} in .svelte
-  function escapeSvelte(str: string): string {
-    return str
-      .replace(/{/g, '&#123;')
-      .replace(/}/g, '&#125;')
-      .replace(/\`/g, '&#96;')
-      .replace(/\\\\([trn])/g, ' ')
-  }
+  // function escapeSvelte(str: string): string {
+  //   return str
+  //     .replace(/{/g, '&#123;')
+  //     .replace(/}/g, '&#125;')
+  //     .replace(/\`/g, '&#96;')
+  //     .replace(/\\\\([trn])/g, ' ')
+  // }
 
   return plugins
 }
