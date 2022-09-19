@@ -3,13 +3,9 @@
 	import '../app.css';
 	import { onMount } from 'svelte'
 	import { browser } from '$app/environment'
-	// import { pwaEnabled } from '$vite-pwa/sveltekit'
-	// import WebManifest from '$vite-pwa/sveltekit/webmanifest'
-	import { pwaEnabled, webManifestLink } from "virtual:vite-pwa/sveltekit";
+	import { pwaInfo } from 'virtual:pwa-info'
 
-	const loadRPC = browser && pwaEnabled
-
-	const webManifest = webManifestLink()
+	const loadRPC = browser && pwaInfo
 
 	let ReloadPrompt
 	onMount(async () => {
@@ -19,9 +15,8 @@
 </script>
 
 <svelte:head>
-	<!--<WebManifest />-->
-	{#if webManifest}
-		{@html webManifest }
+	{#if pwaInfo}
+		{@html pwaInfo.webManifest.linkTag }
 	{/if}
 </svelte:head>
 

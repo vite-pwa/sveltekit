@@ -2,7 +2,7 @@
   "name": "@vite-pwa/sveltekit",
   "type": "module",
   "version": "0.12.7",
-  "packageManager": "pnpm@7.11.0",
+  "packageManager": "pnpm@7.12.0",
   "description": "Zero-config PWA for SvelteKit",
   "author": "antfu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -24,26 +24,20 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs"
-    },
-    "./*": "./*",
-    "./types/client": {
-      "types": "./types/client.d.ts"
     }
   },
   "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "types",
-    "*.d.ts"
-  ],
   "typesVersions": {
     "*": {
       "*": [
-        "./dist/*",
-        "./*"
+        "./dist/*"
       ]
     }
   },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
   "engines": {
     "node": ">=16.14"
   },
@@ -62,15 +56,15 @@
     "@types/node": "^18.7.18",
     "@types/prompts": "^2.4.0",
     "@types/workbox-build": "^5.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
     "eslint": "^8.23.1",
     "kolorist": "^1.6.0",
     "prompts": "^2.4.2",
     "svelte": "^3.50.1",
     "typescript": "^4.8.3",
     "unbuild": "^0.8.11",
-    "vite": "^3.1.1",
-    "vite-plugin-pwa": "file:vite-plugin-pwa-0.12.7.tgz",
+    "vite": "^3.1.3",
+    "vite-plugin-pwa": "file:vite-plugin-pwa-0.12.8.tgz",
     "workbox-window": "^6.5.4"
   }
 }
