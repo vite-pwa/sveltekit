@@ -6,7 +6,10 @@
     "strict": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "types": [
+      "vite-plugin-pwa"
+    ]
   },
   "exclude": [
     "dist",

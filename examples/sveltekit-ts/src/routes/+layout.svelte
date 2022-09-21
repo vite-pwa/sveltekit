@@ -12,12 +12,12 @@
 		loadRPC && (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default)
 	})
 
+	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+
 </script>
 
 <svelte:head>
-	{#if pwaInfo}
-		{@html pwaInfo.webManifest.linkTag }
-	{/if}
+	{@html webManifest }
 </svelte:head>
 
 <Header />

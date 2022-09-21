@@ -1,16 +1,17 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
-import replace from '@rollup/plugin-replace';
 
 const config: UserConfig = {
 	logLevel: 'info',
 	build: {
 		minify: false,
 	},
+	define: {
+		__DATE__: `'${new Date().toISOString()}'`,
+		__RELOAD_SW__: false,
+	},
 	plugins: [
-		// @ts-expect-error not ready for Vite 3
-		replace({ __DATE__: new Date().toISOString(), __RELOAD_SW__: 'false' }),
 		sveltekit(),
 		SvelteKitPWA({
 				srcDir: './src',

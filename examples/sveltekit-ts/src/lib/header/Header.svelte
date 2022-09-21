@@ -3,7 +3,7 @@
 	import logo from './svelte-logo.svg';
 
 	// replaced dynamically
-	const date = '__DATE__';
+	const buildDate = __DATE__
 </script>
 
 <header>
@@ -31,7 +31,7 @@
 	</nav>
 
 	<div class="corner">
-		{ date }
+		{ buildDate }
 	</div>
 </header>
 
