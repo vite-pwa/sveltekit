@@ -1,15 +1,12 @@
 <script lang="ts">
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
-	import { onMount } from 'svelte'
-	import { browser } from '$app/environment'
-	import { pwaInfo } from 'virtual:pwa-info'
+	import { onMount } from 'svelte';
+	import { pwaInfo } from 'virtual:pwa-info';
 
-	const loadRPC = browser && pwaInfo
-
-	let ReloadPrompt
+	let ReloadPrompt;
 	onMount(async () => {
-		loadRPC && (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default)
+		pwaInfo && (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
 	})
 
 	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
@@ -17,7 +14,7 @@
 </script>
 
 <svelte:head>
-	{@html webManifest }
+	{@html webManifest}
 </svelte:head>
 
 <Header />
