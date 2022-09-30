@@ -1,5 +1,5 @@
 <p align='center'>
-<img src='https://vite-plugin-pwa.netlify.app/banner_light.svg' alt="@vite-pwa/sveltekit - Zero-config PWA for SvelteKit"><br>
+<img src='./hero.png' alt="@vite-pwa/sveltekit - Zero-config PWA for SvelteKit"><br>
 Zero-config PWA Plugin for SvelteKit
 </p>
 
