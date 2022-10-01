@@ -10,7 +10,7 @@ Zero-config PWA Plugin for SvelteKit
 <a href="https://www.npmjs.com/package/vite-plugin-pwa" target="__blank">
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/vite-plugin-pwa?color=476582&label=">
 </a>
-<a href="https://vite-plugin-pwa.netlify.app/" target="__blank">
+<a href="https://vite-pwa-org.netlify.app/frameworks/sveltekit" target="__blank">
     <img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20guides&color=2e859c" alt="Docs & Guides">
 </a>
 <br>
@@ -30,7 +30,7 @@ Zero-config PWA Plugin for SvelteKit
 
 ## 🚀 Features
 
-- 📖 [**Documentation & guides**](https://vite-plugin-pwa.netlify.app/)
+- 📖 [**Documentation & guides**](https://vite-pwa-org.netlify.app/)
 - 👌 **Zero-Config**: sensible built-in default configs for common use cases
 - 🔩 **Extensible**: expose the full ability to customize the behavior of the plugin
 - 🦾 **Type Strong**: written in [TypeScript](https://www.typescriptlang.org/)
@@ -70,7 +70,7 @@ export default {
 }
 ```
 
-Read the [📖 documentation](https://vite-plugin-pwa.netlify.app/guide/) for a complete guide on how to configure and use
+Read the [📖 documentation](https://vite-pwa-org.netlify.app/frameworks/sveltekit) for a complete guide on how to configure and use
 this plugin.
 
 ## 👀 Full config
