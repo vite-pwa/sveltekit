@@ -15,20 +15,20 @@
 		"@sveltejs/adapter-static": "next",
 		"@sveltejs/kit": "next",
 		"@types/cookie": "^0.5.1",
-		"@typescript-eslint/eslint-plugin": "^5.38.1",
-		"@typescript-eslint/parser": "^5.38.1",
+		"@typescript-eslint/eslint-plugin": "^5.42.1",
+		"@typescript-eslint/parser": "^5.42.1",
 		"@vite-pwa/sveltekit": "workspace:*",
-		"eslint": "^8.24.0",
+		"eslint": "^8.27.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"svelte": "^3.50.1",
-		"svelte-check": "^2.9.1",
+		"svelte": "^3.52.0",
+		"svelte-check": "^2.9.2",
 		"svelte-preprocess": "^4.10.7",
-		"tslib": "^2.4.0",
+		"tslib": "^2.4.1",
 		"typescript": "^4.8.4",
-		"vite": "^3.1.4"
+		"vite": "^3.2.3"
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/fira-mono": "^4.5.9"
+		"@fontsource/fira-mono": "^4.5.10"
 	}
 }
