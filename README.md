@@ -7,7 +7,7 @@ Zero-config PWA Plugin for SvelteKit
 <a href='https://www.npmjs.com/package/@vite-pwa/sveltekit' target="__blank">
 <img src='https://img.shields.io/npm/v/@vite-pwa/sveltekit?color=33A6B8&label=' alt="NPM version">
 </a>
-<a href="https://www.npmjs.com/package/vite-pwa/sveltekit" target="__blank">
+<a href="https://www.npmjs.com/package/@vite-pwa/sveltekit" target="__blank">
     <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@vite-pwa/sveltekit?color=476582&label=">
 </a>
 <a href="https://vite-pwa-org.netlify.app/frameworks/sveltekit" target="__blank">
