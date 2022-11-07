@@ -4,18 +4,18 @@ Zero-config PWA Plugin for SvelteKit
 </p>
 
 <p align='center'>
-<a href='https://www.npmjs.com/package/vite-plugin-pwa' target="__blank">
-<img src='https://img.shields.io/npm/v/vite-plugin-pwa?color=33A6B8&label=' alt="NPM version">
+<a href='https://www.npmjs.com/package/@vite-pwa/sveltekit' target="__blank">
+<img src='https://img.shields.io/npm/v/@vite-pwa/sveltekit?color=33A6B8&label=' alt="NPM version">
 </a>
-<a href="https://www.npmjs.com/package/vite-plugin-pwa" target="__blank">
-    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/vite-plugin-pwa?color=476582&label=">
+<a href="https://www.npmjs.com/package/vite-pwa/sveltekit" target="__blank">
+    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@vite-pwa/sveltekit?color=476582&label=">
 </a>
 <a href="https://vite-pwa-org.netlify.app/frameworks/sveltekit" target="__blank">
     <img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20guides&color=2e859c" alt="Docs & Guides">
 </a>
 <br>
-<a href="https://github.com/antfu/vite-plugin-pwa" target="__blank">
-<img alt="GitHub stars" src="https://img.shields.io/github/stars/antfu/vite-plugin-pwa?style=social">
+<a href="https://github.com/antfu/vite-pwa/sveltekit" target="__blank">
+<img alt="GitHub stars" src="https://img.shields.io/github/stars/vite-pwa/sveltekit?style=social">
 </a>
 </p>
 
@@ -43,6 +43,8 @@ Zero-config PWA Plugin for SvelteKit
 
 ## 📦 Install
 
+> Requires Vite 3.2.0+ and Node 16.14+
+
 ```bash
 npm i @vite-pwa/sveltekit -D 
 
@@ -54,8 +56,6 @@ pnpm add @vite-pwa/sveltekit -D
 ```
 
 ## 🦄 Usage
-
-> Requires Vite 3.2.0+ and Node 16.14+
 
 ```js
 
