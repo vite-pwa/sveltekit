@@ -11,6 +11,13 @@ const config: UserConfig = {
 		__DATE__: `'${new Date().toISOString()}'`,
 		__RELOAD_SW__: false,
 	},
+	// WARN: this will not be necessary on your project
+	server: {
+		fs: {
+			// Allow serving files from hoisted root node_modules
+			allow: ['../..']
+		}
+	},
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
