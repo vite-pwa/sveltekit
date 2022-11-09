@@ -14,7 +14,7 @@ Zero-config PWA Plugin for SvelteKit
     <img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20guides&color=2e859c" alt="Docs & Guides">
 </a>
 <br>
-<a href="https://github.com/antfu/vite-pwa/sveltekit" target="__blank">
+<a href="https://github.com/vite-pwa/sveltekit" target="__blank">
 <img alt="GitHub stars" src="https://img.shields.io/github/stars/vite-pwa/sveltekit?style=social">
 </a>
 </p>
