@@ -57,8 +57,6 @@ pnpm add @vite-pwa/sveltekit -D
 
 ## 🦄 Usage
 
-```js
-
 Add `SvelteKitPWA` plugin to `vite.config.js / vite.config.ts` and configure it:
 
 ```ts
