@@ -48,11 +48,6 @@ export function configureSvelteKitOptions(
   if (!config.modifyURLPrefix)
     config.globPatterns = buildGlobPatterns(config.globPatterns)
 
-  // Vite generates <name>.<hash>.<ext> layout while SvelteKit generates <name>-<hash>.<ext> (Rollup default)
-  // Vite and SvelteKit are not aligned: pwa plugin will use /\.[a-f0-9]{8}\./ by default: #164 optimize workbox work
-  if (!config.dontCacheBustURLsMatching)
-    config.dontCacheBustURLsMatching = /-[a-f0-9]{8}\./
-
   if (!config.manifestTransforms)
     config.manifestTransforms = [createManifestTransform(base, kit)]
 }
