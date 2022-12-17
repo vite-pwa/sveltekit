@@ -49,6 +49,7 @@
     "release": "npx bumpp --push --tag --commit && npm publish"
   },
   "peerDependencies": {
+    "@sveltejs/kit": "^1.0.0",
     "vite-plugin-pwa": "^0.14.0"
   },
   "devDependencies": {

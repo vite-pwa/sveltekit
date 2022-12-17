@@ -12,8 +12,8 @@
 		"lint-fix": "nr lint --fix"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/adapter-static": "^1.0.0",
+		"@sveltejs/kit": "^1.0.1",
 		"@types/cookie": "^0.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.46.0",
 		"@typescript-eslint/parser": "^5.46.0",
