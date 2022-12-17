@@ -4,6 +4,7 @@ export interface KitOptions {
   /**
      * The base path for your application: by default will use the Vite base.
      *
+     * @deprecated since ^0.1.0 version, the plugin has SvelteKit ^1.0.0 as peer dependency, Vite's base is now properly configured.
      * @default '/'
      * @see https://kit.svelte.dev/docs/configuration#paths
      * */
