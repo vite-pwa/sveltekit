@@ -12,20 +12,20 @@
 		"lint-fix": "nr lint --fix"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/adapter-static": "^1.0.0",
+		"@sveltejs/kit": "^1.0.1",
 		"@types/cookie": "^0.5.1",
-		"@typescript-eslint/eslint-plugin": "^5.42.1",
-		"@typescript-eslint/parser": "^5.42.1",
+		"@typescript-eslint/eslint-plugin": "^5.46.0",
+		"@typescript-eslint/parser": "^5.46.0",
 		"@vite-pwa/sveltekit": "workspace:*",
-		"eslint": "^8.27.0",
+		"eslint": "^8.29.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"svelte": "^3.52.0",
-		"svelte-check": "^2.9.2",
-		"svelte-preprocess": "^4.10.7",
+		"svelte": "^3.54.0",
+		"svelte-check": "^2.10.2",
+		"svelte-preprocess": "^5.0.0",
 		"tslib": "^2.4.1",
-		"typescript": "^4.8.4",
-		"vite": "^3.2.3"
+		"typescript": "^4.9.4",
+		"vite": "^4.0.0"
 	},
 	"type": "module",
 	"dependencies": {

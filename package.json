@@ -2,7 +2,7 @@
   "name": "@vite-pwa/sveltekit",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@7.14.2",
+  "packageManager": "pnpm@7.18.1",
   "description": "Zero-config PWA for SvelteKit",
   "author": "antfu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -49,24 +49,21 @@
     "release": "npx bumpp --push --tag --commit && npm publish"
   },
   "peerDependencies": {
-    "vite-plugin-pwa": "^0.13.3",
-    "@types/workbox-build": "^5.0.1"
+    "@sveltejs/kit": "^1.0.0",
+    "vite-plugin-pwa": "^0.14.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.29.4",
-    "@antfu/ni": "^0.18.3",
+    "@antfu/eslint-config": "^0.33.1",
+    "@antfu/ni": "^0.18.8",
     "@types/debug": "^4.1.7",
-    "@types/node": "^18.11.9",
-    "@types/prompts": "^2.4.1",
+    "@types/node": "^18.11.13",
     "@types/workbox-build": "^5.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.42.1",
-    "eslint": "^8.27.0",
-    "kolorist": "^1.6.0",
-    "prompts": "^2.4.2",
-    "svelte": "^3.52.0",
-    "typescript": "^4.8.4",
-    "unbuild": "^0.9.4",
-    "vite": "^3.2.3",
-    "vite-plugin-pwa": "^0.13.3"
+    "@typescript-eslint/eslint-plugin": "^5.46.0",
+    "eslint": "^8.29.0",
+    "svelte": "^3.54.0",
+    "typescript": "^4.9.4",
+    "unbuild": "^1.0.2",
+    "vite": "^4.0.0",
+    "vite-plugin-pwa": "^0.14.0"
   }
 }
