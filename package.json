@@ -46,7 +46,7 @@
     "lint": "eslint .",
     "lint-fix": "nr lint --fix",
     "prepublishOnly": "npm run build",
-    "release": "npx bumpp --push --tag --commit && npm publish"
+    "release": "npx bumpp --push --tag --commit && npm publish --access=public"
   },
   "peerDependencies": {
     "@sveltejs/kit": "^1.0.0",
