@@ -16,7 +16,7 @@ importers:
       typescript: ^4.9.4
       unbuild: ^1.0.2
       vite: ^4.0.0
-      vite-plugin-pwa: ^0.14.0
+      vite-plugin-pwa: ^0.14.1
     dependencies:
       '@sveltejs/kit': 1.0.1_svelte@3.54.0+vite@4.0.0
     devDependencies:
@@ -31,7 +31,7 @@ importers:
       typescript: 4.9.4
       unbuild: 1.0.2
       vite: 4.0.0_@types+node@18.11.13
-      vite-plugin-pwa: 0.14.0_ey73qqxyiosw72sm7fnc7yd3jm
+      vite-plugin-pwa: 0.14.1_ey73qqxyiosw72sm7fnc7yd3jm
 
   examples/sveltekit-ts:
     specifiers:
@@ -5140,8 +5140,8 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-plugin-pwa/0.14.0_ey73qqxyiosw72sm7fnc7yd3jm:
-    resolution: {integrity: sha512-3wZx47PLWTckOQhc8Y6YZjAbNZ89Ovh4TdCT97MGhgl7aFd2LUekVnAmIgFwgMqyxzJ93nmkPF/ALpEW/i2qCg==}
+  /vite-plugin-pwa/0.14.1_ey73qqxyiosw72sm7fnc7yd3jm:
+    resolution: {integrity: sha512-5zx7yhQ8RTLwV71+GA9YsQQ63ALKG8XXIMqRJDdZkR8ZYftFcRgnzM7wOWmQZ/DATspyhPih5wCdcZnAIsM+mA==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
       workbox-build: ^6.5.4
