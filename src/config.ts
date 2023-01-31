@@ -84,7 +84,7 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
         if (url.startsWith('/'))
           url = url.slice(1)
 
-        e.url = url === 'index.html' ? `${base}` : `${base}${url.slice(0, url.lastIndexOf('.'))}${suffix}`
+        e.url = url === "index.html" ? `${base}` : `${base}${url}`;
       }
       else {
         e.url = url
