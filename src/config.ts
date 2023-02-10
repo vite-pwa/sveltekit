@@ -84,28 +84,27 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
         if (url.startsWith('/'))
           url = url.slice(1)
 
-        if (e.url === 'index.html') {
-          e.url = base
+        if (url === 'index.html') {
+          url = base
         }
         else {
-          const idx = e.url.lastIndexOf('/')
+          const idx = url.lastIndexOf('/')
           if (idx > -1) {
             // abc/index.html -> abc/?
-            if (e.url.endsWith('/index.html'))
-              e.url = `${e.url.slice(0, idx)}${suffix}`
+            if (url.endsWith('/index.html'))
+              url = `${url.slice(0, idx)}${suffix}`
             // abc/def.html -> abc/def/?
             else
-              e.url = `${e.url.substring(0, e.url.lastIndexOf('.'))}${suffix}`
+              url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
           }
           else {
             // xxx.html -> xxx/?
-            e.url = `${e.url.substring(0, e.url.lastIndexOf('.'))}${suffix}`
+            url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
           }
         }
       }
-      else {
-        e.url = url
-      }
+
+      e.url = url
 
       return e
     })
