@@ -5,6 +5,7 @@
 		"sw-dev": "vite dev",
 		"dev": "vite dev",
 		"build": "vite build",
+		"build-self-destroying": "SELF_DESTROYING_SW=true vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",

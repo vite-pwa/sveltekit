@@ -35,11 +35,26 @@ export function SvelteKitPlugin(
           let swName = options.filename ?? 'sw.js'
           const outDir = options.outDir ?? `${viteConfig.root}/.svelte-kit/output`
           if (!options.strategies || options.strategies === 'generateSW' || options.selfDestroying) {
+            let path: string
+            let existsFile: boolean
+
+            // remove kit sw: we'll regenerate the sw
+            if (options.selfDestroying && options.strategies === 'injectManifest') {
+              if (swName.endsWith('.ts'))
+                swName = swName.replace(/\.ts$/, '.js')
+
+              path = join(outDir, 'client', 'service-worker.js').replace('\\/g', '/')
+              existsFile = await isFile(path)
+              if (existsFile)
+                await rm(path)
+            }
+
             // regenerate sw before adapter runs: we need to include generated html pages
             await api.generateSW()
+
             const serverOutputDir = join(outDir, 'server')
-            let path = join(serverOutputDir, swName).replace(/\\/g, '/')
-            let existsFile = await isFile(path)
+            path = join(serverOutputDir, swName).replace(/\\/g, '/')
+            existsFile = await isFile(path)
             if (existsFile) {
               const sw = await readFile(path, 'utf-8')
               await writeFile(
@@ -57,7 +72,7 @@ export function SvelteKitPlugin(
                 unique: true,
               },
             )
-            if (result) {
+            if (result && result.length > 0) {
               path = join(serverOutputDir, result[0]).replace(/\\/g, '/')
               await writeFile(
                 join(outDir, 'client', result[0]).replace('\\/g', '/'),

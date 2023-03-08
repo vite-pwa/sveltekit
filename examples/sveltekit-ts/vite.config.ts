@@ -35,6 +35,7 @@ const config: UserConfig = {
 				filename: generateSW ? undefined : 'prompt-sw.ts',
 				scope: '/',
 				base: '/',
+				selfDestroying: process.env.SELF_DESTROYING_SW === 'true',
 				manifest: {
 					short_name: 'SvelteKit PWA',
 					name: 'SvelteKit PWA',
