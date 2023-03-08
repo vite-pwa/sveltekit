@@ -14,6 +14,7 @@ importers:
       '@vite-pwa/sveltekit': workspace:*
       bumpp: ^8.2.1
       eslint: ^8.35.0
+      kolorist: ^1.6.0
       svelte: ^3.55.1
       typescript: ^4.9.5
       unbuild: ^1.1.2
@@ -31,6 +32,7 @@ importers:
       '@vite-pwa/sveltekit': 'link:'
       bumpp: 8.2.1
       eslint: 8.35.0
+      kolorist: 1.7.0
       svelte: 3.55.1
       typescript: 4.9.5
       unbuild: 1.1.2
@@ -4086,6 +4088,10 @@ packages:
   /kleur/4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
+
+  /kolorist/1.7.0:
+    resolution: {integrity: sha512-ymToLHqL02udwVdbkowNpzjFd6UzozMtshPQKVi5k1EjKRqKqBrOnE9QbLEb0/pV76SAiIT13hdL8R6suc+f3g==}
+    dev: true
 
   /leven/3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}

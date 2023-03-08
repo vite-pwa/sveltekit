@@ -6,6 +6,8 @@ import { configureSvelteKitOptions } from './config'
 import { SvelteKitPlugin } from './plugins/SvelteKitPlugin'
 
 export function SvelteKitPWA(userOptions: Partial<SvelteKitPWAOptions> = {}): Plugin[] {
+  const latestKit = userOptions.kit?.latestKit ?? true
+
   if (!userOptions.integration)
     userOptions.integration = {}
 
@@ -19,17 +21,18 @@ export function SvelteKitPWA(userOptions: Partial<SvelteKitPWAOptions> = {}): Pl
     options,
   )
 
-  // return VitePWA(userOptions)
-
   const plugins = VitePWA(userOptions)
+
+  if (!latestKit)
+    return plugins
+
   const plugin = plugins.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
   const resolveVitePluginPWAAPI = (): VitePluginPWAAPI | undefined => {
     return plugin?.api
   }
 
   return [
-    // remove the build plugin
-    // ...plugins,
+    // remove the build plugin: we're using a custom one
     ...plugins.filter(p => p && typeof p === 'object' && 'name' in p && p.name !== 'vite-plugin-pwa:build'),
     SvelteKitPlugin(userOptions, resolveVitePluginPWAAPI),
   ]

@@ -8,7 +8,13 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		serviceWorker: {
+			register: false,
+		},
+		files: {
+			serviceWorker: 'src/prompt-sw.ts',
+		}
 	}
 };
 
