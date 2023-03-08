@@ -31,6 +31,7 @@ export function SvelteKitPlugin(
         const api = apiResolver()
 
         if (api && !api.disabled && viteConfig.build.ssr) {
+          const webManifest = options.manifestFilename ?? 'manifest.webmanifest'
           let swName = options.filename ?? 'sw.js'
           const outDir = options.outDir ?? `${viteConfig.root}/.svelte-kit/output`
           if (!options.strategies || options.strategies === 'generateSW' || options.selfDestroying) {
@@ -38,7 +39,7 @@ export function SvelteKitPlugin(
             await api.generateSW()
             const serverOutputDir = join(outDir, 'server')
             let path = join(serverOutputDir, swName).replace(/\\/g, '/')
-            const existsFile = await isFile(path)
+            let existsFile = await isFile(path)
             if (existsFile) {
               const sw = await readFile(path, 'utf-8')
               await writeFile(
@@ -65,6 +66,12 @@ export function SvelteKitPlugin(
               )
               await rm(path)
             }
+            // remove also web manifest in server folder
+            path = join(serverOutputDir, webManifest).replace(/\\/g, '/')
+            existsFile = await isFile(path)
+            if (existsFile)
+              await rm(path)
+
             return
           }
 
@@ -73,7 +80,7 @@ export function SvelteKitPlugin(
 
           // kit fixes sw name to 'service-worker.js'
           const injectManifestOptions: import('workbox-build').InjectManifestOptions = {
-            globDirectory: join(outDir, 'client').replace(/\\/g, '/'),
+            globDirectory: outDir.replace(/\\/g, '/'),
             ...options.injectManifest ?? {},
             swSrc: join(outDir, 'client', 'service-worker.js').replace(/\\/g, '/'),
             swDest: join(outDir, 'client', 'service-worker.js').replace(/\\/g, '/'),

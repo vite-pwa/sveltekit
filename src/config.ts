@@ -73,10 +73,6 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
       excludeFallback = true
     }
 
-    // TODO remove this log
-    // eslint-disable-next-line no-console
-    console.log(entries.map(e => e.url))
-
     // the fallback will be always in .svelte-kit/output/prerendered/fallback.html
     const manifest = entries.filter(({ url }) => !(excludeFallback && url === defaultAdapterFallback)).map((e) => {
       let url = e.url
@@ -131,10 +127,13 @@ function buildGlobPatterns(globPatterns?: string[]): string[] {
       globPatterns.push('prerendered/**/*.html')
 
     if (!globPatterns.some(g => g.startsWith('client/')))
-      globPatterns.push('client/**/*.{js,css,ico,png,svg,webp}')
+      globPatterns.push('client/**/*.{js,css,ico,png,svg,webp,webmanifest}')
+
+    if (!globPatterns.some(g => g.includes('webmanifest')))
+      globPatterns.push('client/*.webmanifest')
 
     return globPatterns
   }
 
-  return ['client/**/*.{js,css,ico,png,svg,webp}', 'prerendered/**/*.html']
+  return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.html']
 }

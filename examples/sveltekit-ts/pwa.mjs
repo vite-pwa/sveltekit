@@ -1,1 +1,1 @@
-export const generateSW = true
+export const generateSW = false;
