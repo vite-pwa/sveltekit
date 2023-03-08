@@ -7,10 +7,10 @@ export default defineBuildConfig({
   clean: true,
   declaration: true,
   externals: [
+    'fast-glob',
     'vite',
     'vite-plugin-pwa',
     'workbox-build',
-    'fast-glob',
   ],
   rollup: {
     emitCJS: false,
