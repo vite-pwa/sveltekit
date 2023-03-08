@@ -74,6 +74,7 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
     }
 
     // TODO remove this log
+    // eslint-disable-next-line no-console
     console.log(entries.map(e => e.url))
 
     // the fallback will be always in .svelte-kit/output/prerendered/fallback.html
