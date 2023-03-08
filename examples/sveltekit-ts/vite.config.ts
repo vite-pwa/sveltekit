@@ -1,6 +1,8 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
+// you don't need to do this if you're using generateSW strategy in your app
+import { generateSW } from './pwa.mjs';
 
 const config: UserConfig = {
 	// WARN: this will not be necessary on your project
@@ -27,9 +29,10 @@ const config: UserConfig = {
 		SvelteKitPWA({
 				srcDir: './src',
 				mode: 'development',
-				strategies: 'injectManifest',
-				filename: 'prompt-sw.ts',
-				// filename: 'service-worker.ts',
+				// you don't need to do this if you're using generateSW strategy in your app
+				strategies: generateSW ? 'generateSW' : 'injectManifest',
+				// you don't need to do this if you're using generateSW strategy in your app
+				filename: generateSW ? undefined : 'prompt-sw.ts',
 				scope: '/',
 				base: '/',
 				manifest: {
