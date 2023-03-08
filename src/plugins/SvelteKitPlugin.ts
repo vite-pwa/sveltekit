@@ -49,23 +49,21 @@ export function SvelteKitPlugin(
               await rm(path)
             }
             // move also workbox-*.js when using generateSW
-            if (!options.strategies || options.strategies === 'generateSW') {
-              const result = await fg(
-                ['workbox-*.js'], {
-                  cwd: serverOutputDir,
-                  onlyFiles: true,
-                  unique: true,
-                },
+            const result = await fg(
+              ['workbox-*.js'], {
+                cwd: serverOutputDir,
+                onlyFiles: true,
+                unique: true,
+              },
+            )
+            if (result) {
+              path = join(serverOutputDir, result[0]).replace(/\\/g, '/')
+              await writeFile(
+                join(outDir, 'client', result[0]).replace('\\/g', '/'),
+                await readFile(path, 'utf-8'),
+                'utf-8',
               )
-              if (result) {
-                path = join(serverOutputDir, result[0]).replace(/\\/g, '/')
-                await writeFile(
-                  join(outDir, 'client', result[0]).replace('\\/g', '/'),
-                  await readFile(path, 'utf-8'),
-                  'utf-8',
-                )
-                await rm(path)
-              }
+              await rm(path)
             }
             return
           }
@@ -76,15 +74,13 @@ export function SvelteKitPlugin(
           // kit fixes sw name to 'service-worker.js'
           const injectManifestOptions: import('workbox-build').InjectManifestOptions = {
             globDirectory: join(outDir, 'client').replace(/\\/g, '/'),
-            dontCacheBustURLsMatching: /[.-][a-f0-9]{8}\./,
-            injectionPoint: 'self.__WB_MANIFEST',
             ...options.injectManifest ?? {},
             swSrc: join(outDir, 'client', 'service-worker.js').replace(/\\/g, '/'),
             swDest: join(outDir, 'client', 'service-worker.js').replace(/\\/g, '/'),
           }
 
           const [injectManifest, logWorkboxResult] = await Promise.all([
-            loadWorkboxBuild().then(m => m.injectManifest),
+            import('workbox-build').then(m => m.injectManifest),
             import('./log').then(m => m.logWorkboxResult),
           ])
 
@@ -107,18 +103,6 @@ export function SvelteKitPlugin(
   }
 }
 
-async function loadWorkboxBuild(): Promise<typeof import('workbox-build')> {
-  // Uses require to lazy load.
-  // "workbox-build" is very large and it makes config loading slow.
-  // Since it is not always used, load this when it is needed.
-
-  try {
-    return await import('workbox-build')
-  }
-  catch (_) {
-    return require('workbox-build')
-  }
-}
 async function isFile(path: string) {
   try {
     const stats = await lstat(path)

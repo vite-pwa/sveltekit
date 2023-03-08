@@ -73,6 +73,9 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
       excludeFallback = true
     }
 
+    // TODO remove this log
+    console.log(entries.map(e => e.url))
+
     // the fallback will be always in .svelte-kit/output/prerendered/fallback.html
     const manifest = entries.filter(({ url }) => !(excludeFallback && url === defaultAdapterFallback)).map((e) => {
       let url = e.url
