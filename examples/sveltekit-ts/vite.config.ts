@@ -13,6 +13,7 @@ const config: UserConfig = {
 	define: {
 		__DATE__: `'${new Date().toISOString()}'`,
 		__RELOAD_SW__: false,
+		'process.env.NODE_ENV': process.env.NODE_ENV ?? '"development"',
 	},
 	// WARN: this will not be necessary on your project
 	server: {
