@@ -10,6 +10,7 @@ export default defineBuildConfig({
     'vite',
     'vite-plugin-pwa',
     'workbox-build',
+    'fast-glob',
   ],
   rollup: {
     emitCJS: false,

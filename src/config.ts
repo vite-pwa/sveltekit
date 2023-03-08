@@ -11,7 +11,7 @@ export function configureSvelteKitOptions(
   const {
     base = viteOptions.base ?? '/',
     adapterFallback,
-    outDir = '.svelte-kit',
+    outDir = `${viteOptions.root}/.svelte-kit`,
   } = kit
 
   // Vite will copy public folder to the globDirectory after pwa plugin runs:
@@ -84,11 +84,27 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
         if (url.startsWith('/'))
           url = url.slice(1)
 
-        e.url = url === 'index.html' ? `${base}` : `${base}${url.slice(0, url.lastIndexOf('.'))}${suffix}`
+        if (url === 'index.html') {
+          url = base
+        }
+        else {
+          const idx = url.lastIndexOf('/')
+          if (idx > -1) {
+            // abc/index.html -> abc/?
+            if (url.endsWith('/index.html'))
+              url = `${url.slice(0, idx)}${suffix}`
+            // abc/def.html -> abc/def/?
+            else
+              url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
+          }
+          else {
+            // xxx.html -> xxx/?
+            url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
+          }
+        }
       }
-      else {
-        e.url = url
-      }
+
+      e.url = url
 
       return e
     })

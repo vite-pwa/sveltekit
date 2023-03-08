@@ -3,10 +3,13 @@ import type { UserConfig } from 'vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 
 const config: UserConfig = {
+	// WARN: this will not be necessary on your project
 	logLevel: 'info',
+	// WARN: this will not be necessary on your project
 	build: {
 		minify: false,
 	},
+	// WARN: this will not be necessary on your project
 	define: {
 		__DATE__: `'${new Date().toISOString()}'`,
 		__RELOAD_SW__: false,
@@ -57,6 +60,9 @@ const config: UserConfig = {
 				injectManifest: {
 					globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
 				},
+				workbox: {
+					globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
+				},
 				devOptions: {
 					enabled: true,
 					type: 'module',
@@ -65,7 +71,8 @@ const config: UserConfig = {
 				// if you have shared info in svelte config file put in a separate module and use it also here
 				kit: {}
 			}
-		)]
+		)
+	]
 };
 
 export default config;
