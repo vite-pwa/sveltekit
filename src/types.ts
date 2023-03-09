@@ -26,12 +26,6 @@ export interface KitOptions {
      * @see https://kit.svelte.dev/docs/configuration#trailingslash
      * */
   trailingSlash?: 'never' | 'always' | 'ignore'
-  /**
-   * If you're using older version of SvelteKit, you can set this to `false`.
-   *
-   * @default true
-   */
-  latestKit?: boolean
 }
 
 export interface SvelteKitPWAOptions extends Partial<VitePWAOptions> {

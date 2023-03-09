@@ -12,7 +12,6 @@ export function configureSvelteKitOptions(
     base = viteOptions.base ?? '/',
     adapterFallback,
     outDir = `${viteOptions.root}/.svelte-kit`,
-    latestKit = true,
   } = kit
 
   // Vite will copy public folder to the globDirectory after pwa plugin runs:
@@ -30,13 +29,12 @@ export function configureSvelteKitOptions(
   >
 
   if (options.strategies === 'injectManifest') {
-    if (latestKit) {
-      if (!options.srcDir)
-        options.srcDir = 'src'
+    if (!options.srcDir)
+      options.srcDir = 'src'
 
-      if (!options.filename)
-        options.filename = 'service-worker.js'
-    }
+    if (!options.filename)
+      options.filename = 'service-worker.js'
+
     options.injectManifest = options.injectManifest ?? {}
     config = options.injectManifest
   }
