@@ -44,6 +44,8 @@ Zero-config PWA Plugin for SvelteKit
 
 ## 📦 Install
 
+> From v0.2.0, `@vite-pwa/sveltekit` requires **SvelteKit 1.3.1 or above**.
+
 ```bash
 npm i @vite-pwa/sveltekit -D 
 
