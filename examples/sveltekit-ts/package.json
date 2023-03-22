@@ -5,6 +5,7 @@
 		"sw-dev": "vite dev",
 		"dev": "vite dev",
 		"build": "vite build",
+		"build-self-destroying": "SELF_DESTROYING_SW=true vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -12,20 +13,20 @@
 		"lint-fix": "nr lint --fix"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^1.0.0",
-		"@sveltejs/kit": "^1.0.1",
+		"@sveltejs/adapter-static": "^2.0.1",
+		"@sveltejs/kit": "^1.11.0",
 		"@types/cookie": "^0.5.1",
-		"@typescript-eslint/eslint-plugin": "^5.51.0",
-		"@typescript-eslint/parser": "^5.51.0",
+		"@typescript-eslint/eslint-plugin": "^5.54.1",
+		"@typescript-eslint/parser": "^5.54.1",
 		"@vite-pwa/sveltekit": "workspace:*",
-		"eslint": "^8.33.0",
+		"eslint": "^8.35.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"svelte": "^3.54.0",
-		"svelte-check": "^2.10.2",
-		"svelte-preprocess": "^5.0.0",
-		"tslib": "^2.4.1",
+		"svelte": "^3.55.1",
+		"svelte-check": "^3.1.0",
+		"svelte-preprocess": "^5.0.1",
+		"tslib": "^2.5.0",
 		"typescript": "^4.9.5",
-		"vite": "^4.0.0"
+		"vite": "^4.1.4"
 	},
 	"type": "module",
 	"dependencies": {

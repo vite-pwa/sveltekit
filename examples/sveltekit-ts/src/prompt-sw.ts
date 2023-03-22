@@ -1,3 +1,7 @@
+/// <reference lib="WebWorker" />
+/// <reference types="vite/client" />
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 

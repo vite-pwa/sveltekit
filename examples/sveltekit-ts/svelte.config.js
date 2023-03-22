@@ -1,5 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
+// you don't need to do this if you're using generateSW strategy in your app
+import { generateSW } from './pwa.mjs';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,7 +10,14 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		serviceWorker: {
+			register: false,
+		},
+		files: {
+			// you don't need to do this if you're using generateSW strategy in your app
+			serviceWorker: generateSW ? undefined : 'src/prompt-sw.ts',
+		}
 	}
 };
 
