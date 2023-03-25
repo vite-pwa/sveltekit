@@ -54,11 +54,18 @@ export function configureSvelteKitOptions(
   if (!config.modifyURLPrefix)
     config.globPatterns = buildGlobPatterns(config.globPatterns)
 
-  if (!config.manifestTransforms)
-    config.manifestTransforms = [createManifestTransform(base, kit)]
+  if (!config.manifestTransforms) {
+    config.manifestTransforms = [createManifestTransform(
+      base,
+      options.strategies === 'injectManifest'
+        ? undefined
+        : (options.manifestFilename ?? 'manifest.webmanifest'),
+      kit,
+    )]
+  }
 }
 
-function createManifestTransform(base: string, options?: KitOptions): ManifestTransform {
+function createManifestTransform(base: string, webManifestName?: string, options?: KitOptions): ManifestTransform {
   return async (entries) => {
     const defaultAdapterFallback = 'prerendered/fallback.html'
     const suffix = options?.trailingSlash === 'always' ? '/' : ''
@@ -72,50 +79,55 @@ function createManifestTransform(base: string, options?: KitOptions): ManifestTr
     }
 
     // the fallback will be always in .svelte-kit/output/prerendered/fallback.html
-    const manifest = entries.filter(({ url }) => !(excludeFallback && url === defaultAdapterFallback)).map((e) => {
-      let url = e.url
-      // client assets in `.svelte-kit/output/client` folder.
-      // SSG pages in `.svelte-kit/output/prerendered/pages` folder.
-      // fallback page in `.svelte-kit/output/prerendered` folder (fallback.html is the default).
-      if (url.startsWith('client/'))
-        url = url.slice(7)
+    const manifest = entries
+      .filter(({ url }) => !(excludeFallback && url === defaultAdapterFallback))
+      .map((e) => {
+        let url = e.url
+        // client assets in `.svelte-kit/output/client` folder.
+        // SSG pages in `.svelte-kit/output/prerendered/pages` folder.
+        // fallback page in `.svelte-kit/output/prerendered` folder (fallback.html is the default).
+        if (url.startsWith('client/'))
+          url = url.slice(7)
 
-      else if (url.startsWith('prerendered/pages/'))
-        url = url.slice(18)
+        else if (url.startsWith('prerendered/pages/'))
+          url = url.slice(18)
 
-      else if (url === defaultAdapterFallback)
-        url = adapterFallback!
+        else if (url === defaultAdapterFallback)
+          url = adapterFallback!
 
-      if (url.endsWith('.html')) {
-        if (url.startsWith('/'))
-          url = url.slice(1)
+        if (url.endsWith('.html')) {
+          if (url.startsWith('/'))
+            url = url.slice(1)
 
-        if (url === 'index.html') {
-          url = base
-        }
-        else {
-          const idx = url.lastIndexOf('/')
-          if (idx > -1) {
-            // abc/index.html -> abc/?
-            if (url.endsWith('/index.html'))
-              url = `${url.slice(0, idx)}${suffix}`
-            // abc/def.html -> abc/def/?
-            else
-              url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
+          if (url === 'index.html') {
+            url = base
           }
           else {
+            const idx = url.lastIndexOf('/')
+            if (idx > -1) {
+            // abc/index.html -> abc/?
+              if (url.endsWith('/index.html'))
+                url = `${url.slice(0, idx)}${suffix}`
+              // abc/def.html -> abc/def/?
+              else
+                url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
+            }
+            else {
             // xxx.html -> xxx/?
-            url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
+              url = `${url.substring(0, url.lastIndexOf('.'))}${suffix}`
+            }
           }
         }
-      }
 
-      e.url = url
+        e.url = url
 
-      return e
-    })
+        return e
+      })
 
-    return { manifest }
+    if (!webManifestName)
+      return { manifest }
+
+    return { manifest: manifest.filter(e => e.url !== webManifestName) }
   }
 }
 
