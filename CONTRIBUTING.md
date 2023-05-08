@@ -3,6 +3,7 @@
 Hi! We are really excited that you are interested in contributing to `@vite-pwa/sveltekit`. Before submitting your contribution, please make sure to take a moment and read through the following guide.
 
 Refer also to https://github.com/antfu/contribute.
+
 ## Set up your local development environment
 
 The `@vite-pwa/sveltekit` repo is a monorepo using pnpm workspaces. The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/).
@@ -28,10 +29,8 @@ git checkout -b my-new-branch
 
 To test your changes locally, change to `examples/sveltekit-ts` folder and run `pnpm run build && pnpm run preview`.
 
-You can change `pwa.mjs` module to test `injectManifest` and `generateSW` strategies.
-
 ## Running tests
 
-Run `pnpm run test` in `@vite-pwa/sveltekit`'s root folder.
+Run `pnpm run test` in `@vite-pwa/sveltekit`'s root folder or inside `examples/sveltekit-ts` folder.
 
 

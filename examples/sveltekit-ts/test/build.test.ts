@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+// import { describe, expect, it } from 'vitest'
 import { stat, readFile } from 'node:fs/promises'
 import { generateSW } from '../pwa.mjs'
 import { nodeAdapter } from '../adapter.mjs'
