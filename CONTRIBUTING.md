@@ -27,7 +27,7 @@ git checkout -b my-new-branch
 
 ## Testing changes
 
-To test your changes locally, change to `examples/sveltekit-ts` folder and run `pnpm run build && pnpm run preview`.
+To test your changes locally, change to `examples/sveltekit-ts` folder and run `pnpm run build-<example> && pnpm run preview` where `<example>` is the name of the example you want to test.
 
 ## Running tests
 
