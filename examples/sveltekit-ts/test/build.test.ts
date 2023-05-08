@@ -1,27 +1,21 @@
 // import { describe, expect, it } from 'vitest'
-import { stat, readFile } from 'node:fs/promises'
+import { existsSync, readFileSync } from 'node:fs'
 import { generateSW } from '../pwa.mjs'
 import { nodeAdapter } from '../adapter.mjs'
 
 describe(`test-build: ${nodeAdapter ? 'node' : 'static'} adapter`, () => {
-    it(`service worker is generated: ${generateSW ? 'sw.js' : 'prompt-sw.js'}`, async () => {
+    it(`service worker is generated: ${generateSW ? 'sw.js' : 'prompt-sw.js'}`, () => {
         const swName = `./build/${nodeAdapter ? 'client/': ''}${generateSW ? 'sw.js' : 'prompt-sw.js'}`
-        let result = await stat(swName)
-        expect(result, `${swName} doesn't exists`).toBeDefined()
-        expect(result.isFile(), `${swName} doesn't exists`).toBeTruthy()
+        expect(existsSync(swName), `${swName} doesn't exist`).toBeTruthy()
         const webManifest = `./build/${nodeAdapter ? 'client/': ''}manifest.webmanifest`
-        result = await stat(webManifest)
-        expect(result, `${webManifest} doesn't exists`).toBeDefined()
-        expect(result.isFile(), `${webManifest} doesn't exist`).toBeTruthy()
-        const swContent = await readFile(swName, 'utf-8')
+        expect(existsSync(webManifest), `${webManifest} doesn't exist`).toBeTruthy()
+        const swContent = readFileSync(swName, 'utf-8')
         let match: RegExpMatchArray | null
         if (generateSW) {
             match = swContent.match(/define\(\['\.\/(workbox-\w+)'/)
             expect(match && match.length === 2, `workbox-***.js entry not found in ${swName}`).toBeTruthy()
             const workboxName = `./build/${nodeAdapter ? 'client/': ''}${match?.[1]}.js`
-            result = await stat(workboxName)
-            expect(result, `${workboxName} doesn't exists`).toBeDefined()
-            expect(result.isFile(),`${workboxName} doesn't exists`).toBeTruthy()
+            expect(existsSync(workboxName),`${workboxName} doesn't exist`).toBeTruthy()
         }
         match = swContent.match(/"url":\s*"manifest\.webmanifest"/)
         expect(match && match.length === 1, 'missing manifest.webmanifest in sw precache manifest').toBeTruthy()
