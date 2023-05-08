@@ -31,7 +31,7 @@ describe(`test-build: ${nodeAdapter ? 'node' : 'static'} adapter`, () => {
         expect(match && match.length === 1,'missing about route (/about) in sw precache manifest').toBeTruthy()
         if (nodeAdapter) {
             match = swContent.match(/"url":\s*"server\//)
-            expect(match === null, 'found server/ entry in sw precache manifest').toBeTruthy()
+            expect(match === null, 'found server/ entries in sw precache manifest').toBeTruthy()
         }
     })
 })
