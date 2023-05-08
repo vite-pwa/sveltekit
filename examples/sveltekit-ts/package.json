@@ -11,6 +11,7 @@
 		"build-inject-manifest-node": "NODE_ADAPTER=true vite build",
 		"build-self-destroying": "SELF_DESTROYING_SW=true vite build",
 		"preview": "vite preview",
+		"preview-node": "ORIGIN=http://localhost:3000 node build",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "eslint .",
