@@ -2,6 +2,7 @@ import { lstat, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { VitePWAOptions, VitePluginPWAAPI } from 'vite-plugin-pwa'
+
 // @ts-expect-error export = is not supported by @types/node
 import fg from 'fast-glob'
 
