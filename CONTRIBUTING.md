@@ -31,6 +31,8 @@ To test your changes locally, change to `examples/sveltekit-ts` folder and run `
 
 ## Running tests
 
-Run `pnpm run test` in `@vite-pwa/sveltekit`'s root folder or inside `examples/sveltekit-ts` folder.
+Before running tests, you'll need to install [Playwright](https://playwright.dev/) Chromium browser: `pnpm playwright install chromium`.
+
+Run `pnpm run test` in `@vite-pwa/sveltekit`'s root folder or inside `examples/sveltekit-ts` folder after build `@vite-pwa/sveltekit`.
 
 
