@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
 import {generateSW} from "../pwa.mjs";
 
-test('The service worker registers and precaches', async ({ page}) => {
+test('The service worker is registered and cache storage is present', async ({ page}) => {
     await page.goto('/');
 
     const swURL = await page.evaluate(async () => {
