@@ -47,7 +47,7 @@
     "lint-fix": "nr lint --fix",
     "prepublishOnly": "npm run build",
     "release": "bumpp && npm publish",
-    "test": "nr build && pnpm run -C examples/sveltekit-ts test"
+    "test": "pnpm run -C examples/sveltekit-ts test"
   },
   "peerDependencies": {
     "@sveltejs/kit": "^1.3.1",

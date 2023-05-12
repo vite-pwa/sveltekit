@@ -1,4 +1,4 @@
-// import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { existsSync, readFileSync } from 'node:fs'
 import { generateSW } from '../pwa.mjs'
 import { nodeAdapter } from '../adapter.mjs'
