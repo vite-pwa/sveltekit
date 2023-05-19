@@ -4,16 +4,27 @@
 	"scripts": {
 		"sw-dev": "vite dev",
 		"dev": "vite dev",
-		"build": "vite build",
+		"build-generate-sw": "GENERATE_SW=true vite build",
+		"build-generate-sw-node": "NODE_ADAPTER=true GENERATE_SW=true vite build",
+		"build-inject-manifest": "vite build",
+		"build-inject-manifest-node": "NODE_ADAPTER=true vite build",
 		"build-self-destroying": "SELF_DESTROYING_SW=true vite build",
-		"preview": "vite preview",
+		"preview": "vite preview --port=4173",
+		"preview-node": "PORT=4173 node build",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "eslint .",
-		"lint-fix": "nr lint --fix"
+		"lint-fix": "nr lint --fix",
+		"test-generate-sw": "nr build-generate-sw && GENERATE_SW=true vitest run && GENERATE_SW=true playwright test",
+		"test-generate-sw-node": "nr build-generate-sw-node && NODE_ADAPTER=true GENERATE_SW=true vitest run && NODE_ADAPTER=true GENERATE_SW=true playwright test",
+		"test-inject-manifest": "nr build-inject-manifest && vitest run && playwright test",
+		"test-inject-manifest-node": "nr build-inject-manifest-node && NODE_ADAPTER=true vitest run && NODE_ADAPTER=true playwright test",
+		"test": "nr test-generate-sw && nr test-generate-sw-node && nr test-inject-manifest && nr test-inject-manifest-node"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.33.0",
 		"@sveltejs/adapter-static": "^2.0.2",
+		"@sveltejs/adapter-node": "^1.2.4",
 		"@sveltejs/kit": "^1.18.0",
 		"@types/cookie": "^0.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.59.6",
@@ -25,7 +36,8 @@
 		"svelte-check": "^3.3.2",
 		"svelte-preprocess": "^5.0.3",
 		"tslib": "^2.5.2",
-		"typescript": "^5.0.4"
+		"typescript": "^5.0.4",
+		"vitest": "^0.31.1"
 	},
 	"type": "module",
 	"dependencies": {

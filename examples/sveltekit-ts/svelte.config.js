@@ -1,7 +1,7 @@
-import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 // you don't need to do this if you're using generateSW strategy in your app
-import { generateSW } from './pwa.mjs';
+import { generateSW } from './pwa.mjs'
+import { adapter } from './adapter.mjs'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,7 +10,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter(),
+		adapter,
 		serviceWorker: {
 			register: false,
 		},
