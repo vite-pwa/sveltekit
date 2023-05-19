@@ -1,7 +1,8 @@
-import { lstat, readFile, rm, writeFile } from 'node:fs/promises'
+import { lstat, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { VitePWAOptions, VitePluginPWAAPI } from 'vite-plugin-pwa'
+
 // @ts-expect-error export = is not supported by @types/node
 import fg from 'fast-glob'
 
@@ -34,6 +35,8 @@ export function SvelteKitPlugin(
           const webManifest = options.manifestFilename ?? 'manifest.webmanifest'
           let swName = options.filename ?? 'sw.js'
           const outDir = options.outDir ?? `${viteConfig.root}/.svelte-kit/output`
+          const clientOutputDir = join(outDir, 'client')
+          await mkdir(clientOutputDir, { recursive: true })
           if (!options.strategies || options.strategies === 'generateSW' || options.selfDestroying) {
             let path: string
             let existsFile: boolean
@@ -43,7 +46,7 @@ export function SvelteKitPlugin(
               if (swName.endsWith('.ts'))
                 swName = swName.replace(/\.ts$/, '.js')
 
-              path = join(outDir, 'client', 'service-worker.js').replace('\\/g', '/')
+              path = join(clientOutputDir, 'service-worker.js').replace('\\/g', '/')
               existsFile = await isFile(path)
               if (existsFile)
                 await rm(path)
@@ -58,7 +61,7 @@ export function SvelteKitPlugin(
             if (existsFile) {
               const sw = await readFile(path, 'utf-8')
               await writeFile(
-                join(outDir, 'client', swName).replace('\\/g', '/'),
+                join(clientOutputDir, swName).replace('\\/g', '/'),
                 sw,
                 'utf-8',
               )
@@ -75,7 +78,7 @@ export function SvelteKitPlugin(
             if (result && result.length > 0) {
               path = join(serverOutputDir, result[0]).replace(/\\/g, '/')
               await writeFile(
-                join(outDir, 'client', result[0]).replace('\\/g', '/'),
+                join(clientOutputDir, result[0]).replace('\\/g', '/'),
                 await readFile(path, 'utf-8'),
                 'utf-8',
               )
@@ -97,8 +100,8 @@ export function SvelteKitPlugin(
           const injectManifestOptions: import('workbox-build').InjectManifestOptions = {
             globDirectory: outDir.replace(/\\/g, '/'),
             ...options.injectManifest ?? {},
-            swSrc: join(outDir, 'client', 'service-worker.js').replace(/\\/g, '/'),
-            swDest: join(outDir, 'client', 'service-worker.js').replace(/\\/g, '/'),
+            swSrc: join(clientOutputDir, 'service-worker.js').replace(/\\/g, '/'),
+            swDest: join(clientOutputDir, 'service-worker.js').replace(/\\/g, '/'),
           }
 
           const [injectManifest, logWorkboxResult] = await Promise.all([
@@ -113,7 +116,7 @@ export function SvelteKitPlugin(
           // rename the sw
           if (swName !== 'service-worker.js') {
             await writeFile(
-              join(outDir, 'client', swName).replace('\\/g', '/'),
+              join(clientOutputDir, swName).replace('\\/g', '/'),
               await readFile(injectManifestOptions.swSrc, 'utf-8'),
               'utf-8',
             )

@@ -54,6 +54,9 @@ export function configureSvelteKitOptions(
   if (!config.modifyURLPrefix)
     config.globPatterns = buildGlobPatterns(config.globPatterns)
 
+  // exclude server assets: sw is built on SSR build
+  config.globIgnores = buildGlobIgnores(config.globIgnores)
+
   if (!config.manifestTransforms) {
     config.manifestTransforms = [createManifestTransform(
       base,
@@ -131,7 +134,7 @@ function createManifestTransform(base: string, webManifestName?: string, options
   }
 }
 
-function buildGlobPatterns(globPatterns?: string[]): string[] {
+function buildGlobPatterns(globPatterns?: string[]) {
   if (globPatterns) {
     if (!globPatterns.some(g => g.startsWith('prerendered/')))
       globPatterns.push('prerendered/**/*.html')
@@ -146,4 +149,15 @@ function buildGlobPatterns(globPatterns?: string[]): string[] {
   }
 
   return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.html']
+}
+
+function buildGlobIgnores(globIgnores?: string[]) {
+  if (globIgnores) {
+    if (!globIgnores.some(g => g.startsWith('server/')))
+      globIgnores.push('server/*.*')
+
+    return globIgnores
+  }
+
+  return ['server/*.*']
 }
