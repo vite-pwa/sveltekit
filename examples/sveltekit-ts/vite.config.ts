@@ -71,6 +71,7 @@ const config: UserConfig = {
 				},
 				devOptions: {
 					enabled: true,
+					suppressWarnings: process.env.SUPPRESS_WARNING === 'true',
 					type: 'module',
 					navigateFallback: '/',
 				},

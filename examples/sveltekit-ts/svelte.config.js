@@ -3,6 +3,8 @@ import preprocess from 'svelte-preprocess';
 import { generateSW } from './pwa.mjs'
 import { adapter } from './adapter.mjs'
 
+console.log(generateSW)
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
