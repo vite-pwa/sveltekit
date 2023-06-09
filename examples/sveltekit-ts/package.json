@@ -4,6 +4,8 @@
 	"scripts": {
 		"sw-dev": "vite dev",
 		"dev": "vite dev",
+		"dev-generate": "GENERATE_SW=true vite dev",
+		"dev-generate-suppress-w": "GENERATE_SW=true SUPPRESS_WARNING=true vite dev",
 		"build-generate-sw": "GENERATE_SW=true vite build",
 		"build-generate-sw-node": "NODE_ADAPTER=true GENERATE_SW=true vite build",
 		"build-inject-manifest": "vite build",
