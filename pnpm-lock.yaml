@@ -52,7 +52,7 @@ importers:
         specifier: ^4.3.9
         version: 4.3.9(@types/node@18.16.16)
       vite-plugin-pwa:
-        specifier: ^0.16.3
+        specifier: '>=0.16.3 <1'
         version: 0.16.3(vite@4.3.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
 
   examples/sveltekit-ts:
