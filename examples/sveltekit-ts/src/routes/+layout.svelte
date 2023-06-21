@@ -1,16 +1,9 @@
 <script lang="ts">
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
-	import { onMount } from 'svelte';
 	import { pwaInfo } from 'virtual:pwa-info';
 
-	let ReloadPrompt;
-	onMount(async () => {
-		pwaInfo && (ReloadPrompt = (await import('$lib/ReloadPrompt.svelte')).default);
-	})
-
 	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
-
 </script>
 
 <svelte:head>
@@ -27,9 +20,9 @@
 	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
 </footer>
 
-{#if ReloadPrompt}
-	<svelte:component this={ReloadPrompt} />
-{/if}
+{#await import('$lib/ReloadPrompt.svelte') then { default: ReloadPrompt}}
+	<ReloadPrompt />
+{/await}
 
 <style>
 	main {
