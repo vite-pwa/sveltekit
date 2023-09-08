@@ -1,4 +1,4 @@
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 // you don't need to do this if you're using generateSW strategy in your app
 import { generateSW } from './pwa.mjs'
 import { adapter } from './adapter.mjs'
@@ -7,7 +7,7 @@ import { adapter } from './adapter.mjs'
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: vitePreprocess(),
 
 	kit: {
 		adapter,

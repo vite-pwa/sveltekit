@@ -63,7 +63,6 @@
     "bumpp": "^9.2.0",
     "eslint": "^8.49.0",
     "kolorist": "^1.8.0",
-    "svelte": "^3.59.1",
     "typescript": "^5.2.2",
     "unbuild": "^2.0.0",
     "vite": "^4.4.9",
