@@ -8,6 +8,7 @@
 </script>
 
 <svelte:head>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html webManifest}
 </svelte:head>
 
@@ -21,7 +22,7 @@
 	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
 </footer>
 
-{#await import('$lib/ReloadPrompt.svelte') then { default: ReloadPrompt}}
+{#await import('$lib/ReloadPrompt.svelte') then { default: ReloadPrompt }}
 	<ReloadPrompt />
 {/await}
 
