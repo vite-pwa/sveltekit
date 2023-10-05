@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useRegisterSW } from 'virtual:pwa-register/svelte';
 
-	// replaced dynamically: TODO figure out how to declare this using vite.define and dts
+	// replaced dynamically
 	const buildDate = __DATE__
 
 	const {

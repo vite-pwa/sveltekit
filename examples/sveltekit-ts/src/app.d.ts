@@ -11,7 +11,7 @@ declare global {
 		interface Locals {
 			userid: string;
 			buildDate: string;
-			periodicUpdates: boolean
+			periodicUpdates: boolean;
 		}
 
 		// interface PageData {}
