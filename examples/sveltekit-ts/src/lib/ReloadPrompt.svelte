@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { useRegisterSW } from 'virtual:pwa-register/svelte';
 
-	// replaced dynamically: TODO figure out how to declare this using vite.define and dts
-	let buildDate = __DATE__
-	let reloadSW = __RELOAD_SW__
+	// replaced dynamically
+	const buildDate = __DATE__
 
 	const {
 		offlineReady,
@@ -11,7 +10,7 @@
 		updateServiceWorker
 	} = useRegisterSW({
 		onRegistered(r) {
-			if (reloadSW) {
+			if (__RELOAD_SW__) {
 				r && setInterval(() => {
 					console.log('Checking for sw update')
 					r.update()
