@@ -40,7 +40,8 @@ export function configureSvelteKitOptions(
   }
   else {
     options.workbox = options.workbox ?? {}
-    if (!options.workbox.navigateFallback)
+    // the user may want to disable offline support
+    if (!('navigateFallback' in options.workbox))
       options.workbox.navigateFallback = adapterFallback ?? base
 
     config = options.workbox
