@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import { existsSync, readFileSync } from 'node:fs'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { generateSW } from '../pwa.mjs'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { nodeAdapter } from '../adapter.mjs'
 
 describe(`test-build: ${nodeAdapter ? 'node' : 'static'} adapter`, () => {

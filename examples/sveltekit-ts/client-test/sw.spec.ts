@@ -1,4 +1,6 @@
 import {test, expect} from '@playwright/test';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import {generateSW} from "../pwa.mjs";
 
 test('The service worker is registered and cache storage is present', async ({ page}) => {
@@ -11,6 +13,7 @@ test('The service worker is registered and cache storage is present', async ({ p
             navigator.serviceWorker.ready,
             new Promise((_, reject) => setTimeout(() => reject(new Error('Service worker registration failed: time out')), 10000))
         ])
+        // @ts-expect-error registration is of type unknown
         return registration.active?.scriptURL
     });
     const swName = generateSW ? 'sw.js' : 'prompt-sw.js'
@@ -41,4 +44,8 @@ test('The service worker is registered and cache storage is present', async ({ p
     expect(urls.some(url => url.startsWith('manifest.webmanifest?__WB_REVISION__='))).toEqual(true)
     expect(urls.some(url => url.startsWith('?__WB_REVISION__='))).toEqual(true)
     expect(urls.some(url => url.startsWith('about?__WB_REVISION__='))).toEqual(true)
+    // dontCacheBustURLsMatching: any asset in _app/immutable folder shouldn't have a revision (?__WB_REVISION__=)
+    expect(urls.some(url => url.startsWith('_app/immutable/') && url.endsWith('.css'))).toEqual(true)
+    expect(urls.some(url => url.startsWith('_app/immutable/') && url.endsWith('.js'))).toEqual(true)
+    // expect(urls.some(url => url.includes('_app/version.json?__WB_REVISION__='))).toEqual(true)
 });
