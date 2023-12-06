@@ -58,6 +58,19 @@ export function configureSvelteKitOptions(
   // exclude server assets: sw is built on SSR build
   config.globIgnores = buildGlobIgnores(config.globIgnores)
 
+  // Vite 5 support: allow override dontCacheBustURLsMatching
+  if (!('dontCacheBustURLsMatching' in config)) {
+    let buildAssetsDir = kit.appDir ?? '_app/'
+    if (buildAssetsDir[0] === '/')
+      buildAssetsDir = buildAssetsDir.slice(1)
+    if (buildAssetsDir[buildAssetsDir.length - 1] !== '/')
+      buildAssetsDir += '/'
+
+    buildAssetsDir += 'immutable/'
+
+    config.dontCacheBustURLsMatching = new RegExp(buildAssetsDir)
+  }
+
   if (!config.manifestTransforms) {
     config.manifestTransforms = [createManifestTransform(
       base,
