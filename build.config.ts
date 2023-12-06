@@ -8,7 +8,6 @@ export default defineBuildConfig({
   declaration: true,
   externals: [
     'fast-glob',
-    // 'kolorist',
     'vite',
     'vite-plugin-pwa',
     'workbox-build',
