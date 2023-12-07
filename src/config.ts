@@ -52,24 +52,24 @@ export function configureSvelteKitOptions(
   if (!config.globDirectory)
     config.globDirectory = `${outDir}/output`
 
-  if (!config.modifyURLPrefix)
+  let buildAssetsDir = kit.appDir ?? '_app/'
+  if (buildAssetsDir[0] === '/')
+    buildAssetsDir = buildAssetsDir.slice(1)
+  if (buildAssetsDir[buildAssetsDir.length - 1] !== '/')
+    buildAssetsDir += '/'
+
+  if (!config.modifyURLPrefix) {
     config.globPatterns = buildGlobPatterns(config.globPatterns)
+    if (kit.includeVersionFile)
+      config.globPatterns.push(`client/${buildAssetsDir}version.json`)
+  }
 
   // exclude server assets: sw is built on SSR build
   config.globIgnores = buildGlobIgnores(config.globIgnores)
 
   // Vite 5 support: allow override dontCacheBustURLsMatching
-  if (!('dontCacheBustURLsMatching' in config)) {
-    let buildAssetsDir = kit.appDir ?? '_app/'
-    if (buildAssetsDir[0] === '/')
-      buildAssetsDir = buildAssetsDir.slice(1)
-    if (buildAssetsDir[buildAssetsDir.length - 1] !== '/')
-      buildAssetsDir += '/'
-
-    buildAssetsDir += 'immutable/'
-
-    config.dontCacheBustURLsMatching = new RegExp(buildAssetsDir)
-  }
+  if (!('dontCacheBustURLsMatching' in config))
+    config.dontCacheBustURLsMatching = new RegExp(`${buildAssetsDir}immutable/`)
 
   if (!config.manifestTransforms) {
     config.manifestTransforms = [createManifestTransform(
@@ -105,10 +105,8 @@ function createManifestTransform(base: string, webManifestName?: string, options
         // fallback page in `.svelte-kit/output/prerendered` folder (fallback.html is the default).
         if (url.startsWith('client/'))
           url = url.slice(7)
-
         else if (url.startsWith('prerendered/pages/'))
           url = url.slice(18)
-
         else if (url === defaultAdapterFallback)
           url = adapterFallback!
 

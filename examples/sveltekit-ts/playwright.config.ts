@@ -2,6 +2,8 @@ import { defineConfig, devices } from '@playwright/test'
 
 const url = 'http://localhost:4173'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { nodeAdapter } from './adapter.mjs'
 
 /**

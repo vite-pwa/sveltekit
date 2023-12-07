@@ -32,6 +32,13 @@ export interface KitOptions {
    * @see https://kit.svelte.dev/docs/configuration#appdir
    */
   appDir?: string
+
+  /**
+   * Include `${appDir}/version.json` in the service worker precache manifest?
+   *
+   * @default false
+   */
+  includeVersionFile?: boolean
 }
 
 export interface SvelteKitPWAOptions extends Partial<VitePWAOptions> {
