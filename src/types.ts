@@ -34,7 +34,7 @@ export interface KitOptions {
   appDir?: string
 
   /**
-   * Include `${appDir}/version.json` in the precache manifest?
+   * Include `${appDir}/version.json` in the service worker precache manifest?
    *
    * @default false
    */
