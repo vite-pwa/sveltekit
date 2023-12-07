@@ -47,5 +47,5 @@ test('The service worker is registered and cache storage is present', async ({ p
     // dontCacheBustURLsMatching: any asset in _app/immutable folder shouldn't have a revision (?__WB_REVISION__=)
     expect(urls.some(url => url.startsWith('_app/immutable/') && url.endsWith('.css'))).toEqual(true)
     expect(urls.some(url => url.startsWith('_app/immutable/') && url.endsWith('.js'))).toEqual(true)
-    // expect(urls.some(url => url.includes('_app/version.json?__WB_REVISION__='))).toEqual(true)
+    expect(urls.some(url => url.includes('_app/version.json?__WB_REVISION__='))).toEqual(true)
 });
