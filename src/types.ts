@@ -17,13 +17,13 @@ export interface KitOptions {
   outDir?: string
 
   /**
-   * @see https://github.com/sveltejs/kit/tree/master/packages/adapter-static#fallback
+   * @see https://kit.svelte.dev/docs/adapter-static#options-fallback
    */
   adapterFallback?: string
 
   /**
+   * Check your SvelteKit version, `trailingSlash` should be used in `+page[jt]s` files or `+layout.[jt]s.
    * @default 'never'
-   * @see https://kit.svelte.dev/docs/configuration#trailingslash
    */
   trailingSlash?: 'never' | 'always' | 'ignore'
 
