@@ -30,6 +30,9 @@ test('Test offline and trailing slashes', async ({ browser}) => {
     })
     expect(url).toBe('http://localhost:4173/about')
     expect(offlinePage.locator('li[aria-current="page"] a').getByText('About')).toBeTruthy()
+    await offlinePage.reload({ waitUntil: 'load' })
+    expect(offlinePage.url()).toBe('http://localhost:4173/about')
+    expect(offlinePage.locator('li[aria-current="page"] a').getByText('About')).toBeTruthy()
     // Dispose context once it's no longer needed.
     await context.close();
 });
