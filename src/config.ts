@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import type { ResolvedConfig } from 'vite'
 import type { ManifestTransform } from 'workbox-build'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
@@ -12,6 +13,7 @@ export function configureSvelteKitOptions(
     base = viteOptions.base ?? '/',
     adapterFallback,
     outDir = `${viteOptions.root}/.svelte-kit`,
+    assets = 'static',
   } = kit
 
   // Vite will copy public folder to the globDirectory after pwa plugin runs:
@@ -79,6 +81,14 @@ export function configureSvelteKitOptions(
         : (options.manifestFilename ?? 'manifest.webmanifest'),
       kit,
     )]
+  }
+
+  if (options.pwaAssets) {
+    options.pwaAssets.integration = {
+      baseUrl: base,
+      publicDir: resolve(viteOptions.root, assets),
+      outDir: resolve(outDir, 'output/client'),
+    }
   }
 }
 

@@ -11,6 +11,14 @@ export interface KitOptions {
   base?: string
 
   /**
+   * The static folder for your application.
+   *
+   * @default 'static'
+   * @see https://kit.svelte.dev/docs/configuration#files
+   */
+  assets?: string
+
+  /**
    * @default '.svelte-kit'
    * @see https://kit.svelte.dev/docs/configuration#outdir
    */
