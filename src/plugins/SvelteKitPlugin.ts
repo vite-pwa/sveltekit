@@ -18,12 +18,33 @@ export function SvelteKitPlugin(
     configResolved(config) {
       viteConfig = config
     },
-    generateBundle(_, bundle) {
+    async generateBundle(_, bundle) {
       // generate only for client
       if (viteConfig.build.ssr)
         return
 
-      apiResolver()?.generateBundle(bundle)
+      const api = apiResolver()
+      if (!api)
+        return
+
+      const assetsGenerator = await api.pwaAssetsGenerator()
+      if (assetsGenerator)
+        assetsGenerator.injectManifestIcons()
+
+      api.generateBundle(bundle)
+    },
+    writeBundle: {
+      sequential: true,
+      enforce: 'pre',
+      async handler() {
+        const api = apiResolver()
+        if (!api || viteConfig.build.ssr)
+          return
+
+        const assetsGenerator = await api.pwaAssetsGenerator()
+        if (assetsGenerator)
+          await assetsGenerator.generate()
+      },
     },
     closeBundle: {
       sequential: true,
