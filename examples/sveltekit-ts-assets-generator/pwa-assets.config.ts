@@ -6,7 +6,7 @@ import {
 
 export default defineConfig({
   headLinkOptions: {
-    preset: 'default',
+    preset: '2023',
   },
   preset: {
     ...minimal2023Preset,
