@@ -86,7 +86,7 @@ export function configureSvelteKitOptions(
   if (options.pwaAssets) {
     options.pwaAssets.integration = {
       baseUrl: base,
-      publicDir: resolve(assets),
+      publicDir: resolve(viteOptions.root, assets),
       outDir: resolve(outDir, 'output/client'),
     }
   }
