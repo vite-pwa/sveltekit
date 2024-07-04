@@ -5,11 +5,20 @@ import type { ResolvedConfig } from 'vite'
 import { cyan, dim, green, magenta, yellow } from 'kolorist'
 import { version } from '../../package.json'
 
-export function logWorkboxResult(strategy: string, buildResult: BuildResult, viteOptions: ResolvedConfig) {
+export function logWorkboxResult(strategy: string, viteOptions: ResolvedConfig, buildResult?: BuildResult) {
   const { root, logLevel = 'info' } = viteOptions
 
   if (logLevel === 'silent')
     return
+
+  if (!buildResult) {
+    console.info([
+      '',
+          `${cyan(`SvelteKit VitePWA v${version}`)}`,
+          `mode      ${magenta(strategy)}`,
+    ].join('\n'))
+    return
+  }
 
   const { count, size, filePaths, warnings } = buildResult
 

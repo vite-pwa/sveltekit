@@ -1,4 +1,4 @@
-import { lstat, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { lstat, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { VitePWAOptions, VitePluginPWAAPI } from 'vite-plugin-pwa'
@@ -117,31 +117,44 @@ export function SvelteKitPlugin(
           if (swName.endsWith('.ts'))
             swName = swName.replace(/\.ts$/, '.js')
 
-          // kit fixes sw name to 'service-worker.js'
-          const injectManifestOptions: import('workbox-build').InjectManifestOptions = {
-            globDirectory: outDir.replace(/\\/g, '/'),
-            ...options.injectManifest ?? {},
-            swSrc: join(clientOutputDir, 'service-worker.js').replace(/\\/g, '/'),
-            swDest: join(clientOutputDir, 'service-worker.js').replace(/\\/g, '/'),
+          const injectionPoint = !options.injectManifest || !('injectionPoint' in options.injectManifest) || !!options.injectManifest.injectionPoint
+
+          if (injectionPoint) {
+            // kit fixes sw name to 'service-worker.js'
+            const injectManifestOptions: import('workbox-build').InjectManifestOptions = {
+              globDirectory: outDir.replace(/\\/g, '/'),
+              ...options.injectManifest ?? {},
+              swSrc: join(clientOutputDir, 'service-worker.js').replace(/\\/g, '/'),
+              swDest: join(clientOutputDir, 'service-worker.js').replace(/\\/g, '/'),
+            }
+
+            const [injectManifest, logWorkboxResult] = await Promise.all([
+              import('workbox-build').then(m => m.injectManifest),
+              import('./log').then(m => m.logWorkboxResult),
+            ])
+
+            // inject the manifest
+            const buildResult = await injectManifest(injectManifestOptions)
+            // log workbox result
+            logWorkboxResult('injectManifest', viteConfig, buildResult)
+            // rename the sw
+            if (swName !== 'service-worker.js') {
+              await rename(
+                join(clientOutputDir, 'service-worker.js').replace('\\/g', '/'),
+                join(clientOutputDir, swName).replace('\\/g', '/'),
+              )
+            }
           }
-
-          const [injectManifest, logWorkboxResult] = await Promise.all([
-            import('workbox-build').then(m => m.injectManifest),
-            import('./log').then(m => m.logWorkboxResult),
-          ])
-
-          // inject the manifest
-          const buildResult = await injectManifest(injectManifestOptions)
-          // log workbox result
-          logWorkboxResult('injectManifest', buildResult, viteConfig)
-          // rename the sw
-          if (swName !== 'service-worker.js') {
-            await writeFile(
-              join(clientOutputDir, swName).replace('\\/g', '/'),
-              await readFile(injectManifestOptions.swSrc, 'utf-8'),
-              'utf-8',
-            )
-            await rm(injectManifestOptions.swDest)
+          else {
+            const { logWorkboxResult } = await import('./log')
+            // log workbox result
+            logWorkboxResult('injectManifest', viteConfig)
+            if (swName !== 'service-worker.js') {
+              await rename(
+                join(clientOutputDir, 'service-worker.js').replace('\\/g', '/'),
+                join(clientOutputDir, swName).replace('\\/g', '/'),
+              )
+            }
           }
         }
       },
