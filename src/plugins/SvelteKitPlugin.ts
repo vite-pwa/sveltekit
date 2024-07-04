@@ -139,12 +139,10 @@ export function SvelteKitPlugin(
             logWorkboxResult('injectManifest', viteConfig, buildResult)
             // rename the sw
             if (swName !== 'service-worker.js') {
-              await writeFile(
+              await rename(
+                join(clientOutputDir, 'service-worker.js').replace('\\/g', '/'),
                 join(clientOutputDir, swName).replace('\\/g', '/'),
-                await readFile(injectManifestOptions.swSrc, 'utf-8'),
-                'utf-8',
               )
-              await rm(injectManifestOptions.swDest)
             }
           }
           else {
