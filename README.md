@@ -1,6 +1,6 @@
 <p align='center'>
 <img src='./hero.png' alt="@vite-pwa/sveltekit - Zero-config PWA for SvelteKit"><br>
-Zero-config PWA Plugin for SvelteKit
+Zero-config PWA Plugin for SvelteKitX
 </p>
 
 <p align='center'>
