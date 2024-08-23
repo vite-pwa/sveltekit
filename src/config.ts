@@ -176,10 +176,10 @@ function buildGlobPatterns(globPatterns?: string[]) {
 function buildGlobIgnores(globIgnores?: string[]) {
   if (globIgnores) {
     if (!globIgnores.some(g => g.startsWith('server/')))
-      globIgnores.push('server/*.*')
+      globIgnores.push('server/**')
 
     return globIgnores
   }
 
-  return ['server/*.*']
+  return ['server/**']
 }
