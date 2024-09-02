@@ -10,7 +10,7 @@
   "homepage": "https://github.com/vite-pwa/sveltekit#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vite-pwa/sveltekit.git"
+    "url": "git+https://github.com/vite-pwa/sveltekit.git"
   },
   "bugs": "https://github.com/vite-pwa/sveltekit/issues",
   "keywords": [
