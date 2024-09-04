@@ -49,8 +49,8 @@ importers:
         specifier: ^5.0.10
         version: 5.2.10(@types/node@18.19.31)(terser@5.31.0)
       vite-plugin-pwa:
-        specifier: '>=0.20.4 <1'
-        version: 0.20.4(@vite-pwa/assets-generator@0.2.6)(vite@5.2.10(@types/node@18.19.31)(terser@5.31.0))(workbox-build@7.1.0)(workbox-window@7.1.0)
+        specifier: '>=0.20.5 <1'
+        version: 0.20.5(@vite-pwa/assets-generator@0.2.6)(vite@5.2.10(@types/node@18.19.31)(terser@5.31.0))(workbox-build@7.1.0)(workbox-window@7.1.0)
 
   examples/sveltekit-ts:
     dependencies:
@@ -3955,8 +3955,8 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
-  vite-plugin-pwa@0.20.4:
-    resolution: {integrity: sha512-AreLrlstKCn56bzfIIhg5P4p12QNsYmHfKiSlrVk9FK8028IfBFeMvhQNSumBgQmb4RaHLm0SaOLvh/rzOImvw==}
+  vite-plugin-pwa@0.20.5:
+    resolution: {integrity: sha512-aweuI/6G6n4C5Inn0vwHumElU/UEpNuO+9iZzwPZGTCH87TeZ6YFMrEY6ZUBQdIHHlhTsbMDryFARcSuOdsz9Q==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@vite-pwa/assets-generator': ^0.2.6
@@ -4940,7 +4940,7 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.5
       '@babel/parser': 7.24.5
       '@babel/types': 7.24.5
-      debug: 4.3.4
+      debug: 4.3.6
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -5543,7 +5543,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
-      debug: 4.3.4
+      debug: 4.3.6
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.6.0
@@ -6415,7 +6415,7 @@ snapshots:
       '@es-joy/jsdoccomment': 0.41.0
       are-docs-informative: 0.0.2
       comment-parser: 1.4.1
-      debug: 4.3.4
+      debug: 4.3.6
       escape-string-regexp: 4.0.0
       eslint: 8.57.0
       esquery: 1.5.0
@@ -8382,7 +8382,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-pwa@0.20.4(@vite-pwa/assets-generator@0.2.6)(vite@5.2.10(@types/node@18.19.31)(terser@5.31.0))(workbox-build@7.1.0)(workbox-window@7.1.0):
+  vite-plugin-pwa@0.20.5(@vite-pwa/assets-generator@0.2.6)(vite@5.2.10(@types/node@18.19.31)(terser@5.31.0))(workbox-build@7.1.0)(workbox-window@7.1.0):
     dependencies:
       debug: 4.3.6
       pretty-bytes: 6.1.1
