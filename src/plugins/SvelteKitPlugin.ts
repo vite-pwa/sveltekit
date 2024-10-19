@@ -2,9 +2,7 @@ import { lstat, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type { Plugin, ResolvedConfig } from 'vite'
 import type { VitePWAOptions, VitePluginPWAAPI } from 'vite-plugin-pwa'
-
-// @ts-expect-error export = is not supported by @types/node
-import fg from 'fast-glob'
+import { glob } from 'tinyglobby'
 
 export function SvelteKitPlugin(
   options: Partial<VitePWAOptions>,
@@ -89,13 +87,12 @@ export function SvelteKitPlugin(
               await rm(path)
             }
             // move also workbox-*.js when using generateSW
-            const result = await fg(
-              ['workbox-*.js'], {
-                cwd: serverOutputDir,
-                onlyFiles: true,
-                unique: true,
-              },
-            )
+            const result = await glob({
+              patterns: ['workbox-*.js'],
+              cwd: serverOutputDir,
+              onlyFiles: true,
+              expandDirectories: false,
+            })
             if (result && result.length > 0) {
               path = join(serverOutputDir, result[0]).replace(/\\/g, '/')
               await writeFile(

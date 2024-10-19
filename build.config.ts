@@ -7,7 +7,7 @@ export default defineBuildConfig({
   clean: true,
   declaration: true,
   externals: [
-    'fast-glob',
+    'tinyglobby',
     'vite',
     'vite-plugin-pwa',
     'workbox-build',
