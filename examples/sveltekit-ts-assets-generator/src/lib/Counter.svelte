@@ -3,16 +3,18 @@
 
 	let count = $state(0);
 
-	const displayed_count = spring();
+	// svelte-ignore state_referenced_locally
+	const displayedCount = spring(count);
+
+	$effect(() => {
+		displayedCount.set(count);
+	});
+	let offset = $derived(modulo($displayedCount, 1));
 
 	function modulo(n: number, m: number) {
 		// handle negative numbers
 		return ((n % m) + m) % m;
 	}
-	$effect(() => {
-		displayed_count.set(count);
-	});
-	let offset = $derived(modulo($displayed_count, 1));
 </script>
 
 <div class="counter">
@@ -24,8 +26,8 @@
 
 	<div class="counter-viewport">
 		<div class="counter-digits" style="transform: translate(0, {100 * offset}%)">
-			<strong class="hidden" aria-hidden="true">{Math.floor($displayed_count + 1)}</strong>
-			<strong>{Math.floor($displayed_count)}</strong>
+			<strong class="hidden" aria-hidden="true">{Math.floor($displayedCount + 1)}</strong>
+			<strong>{Math.floor($displayedCount)}</strong>
 		</div>
 	</div>
 
@@ -53,12 +55,11 @@
 		border: 0;
 		background-color: transparent;
 		touch-action: manipulation;
-		color: var(--text-color);
 		font-size: 2rem;
 	}
 
 	.counter button:hover {
-		background-color: var(--secondary-color);
+		background-color: var(--color-bg-1);
 	}
 
 	svg {
@@ -69,7 +70,7 @@
 	path {
 		vector-effect: non-scaling-stroke;
 		stroke-width: 2px;
-		stroke: var(--text-color);
+		stroke: #444;
 	}
 
 	.counter-viewport {
@@ -86,7 +87,7 @@
 		width: 100%;
 		height: 100%;
 		font-weight: 400;
-		color: var(--accent-color);
+		color: var(--color-theme-1);
 		font-size: 4rem;
 		align-items: center;
 		justify-content: center;
