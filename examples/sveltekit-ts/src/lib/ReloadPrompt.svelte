@@ -9,15 +9,25 @@
 		needRefresh,
 		updateServiceWorker
 	} = useRegisterSW({
-		onRegistered(r) {
-			if (__RELOAD_SW__) {
-				r && setInterval(() => {
-					console.log('Checking for sw update')
-					r.update()
-				}, 20000 /* 20s for testing purposes */)
-			} else {
-				console.log(`SW Registered: ${r}`)
-			}
+		onRegisteredSW(swUrl, r) {
+			r && setInterval(async () => {
+				if (r.installing || !navigator)
+					return
+
+				if (('connection' in navigator) && !navigator.onLine)
+					return
+
+				const resp = await fetch(swUrl, {
+					cache: 'no-store',
+					headers: {
+						'cache': 'no-store',
+						'cache-control': 'no-cache',
+					},
+				})
+
+				if (resp?.status === 200)
+					await r.update()
+			}, 20000 /* 20s for testing purposes */)
 		},
 		onRegisterError(error) {
 			console.log('SW registration error', error)
@@ -28,7 +38,7 @@
 		needRefresh.set(false)
 	}
 
-	$: toast = $offlineReady || $needRefresh
+	let toast = $derived($offlineReady || $needRefresh)
 </script>
 
 {#if toast}
@@ -45,11 +55,11 @@
 			{/if}
 		</div>
 		{#if $needRefresh}
-			<button on:click={() => updateServiceWorker(true)}>
+			<button onclick={() => updateServiceWorker(true)}>
 				Reload
 			</button>
 		{/if}
-		<button on:click={close}>
+		<button onclick={close}>
 			Close
 		</button>
 	</div>

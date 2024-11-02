@@ -3,8 +3,13 @@
 	import '../app.css';
 	import { pwaInfo } from 'virtual:pwa-info';
 	import { pwaAssetsHead } from 'virtual:pwa-assets/head';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+	let { children }: Props = $props();
+
+	let webManifest = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '')
 
 </script>
 
@@ -22,7 +27,7 @@
 <Header />
 
 <main>
-	<slot />
+	{@render children?.()}
 </main>
 
 <footer>
