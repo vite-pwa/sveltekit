@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { spring } from 'svelte/motion';
 
 	let count = $state(0);
@@ -11,7 +9,7 @@
 		// handle negative numbers
 		return ((n % m) + m) % m;
 	}
-	run(() => {
+	$effect(() => {
 		displayed_count.set(count);
 	});
 	let offset = $derived(modulo($displayed_count, 1));
