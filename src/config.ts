@@ -1,7 +1,9 @@
 import { resolve } from 'node:path'
+import crypto from 'node:crypto'
+import fs from 'node:fs'
 import type { ResolvedConfig } from 'vite'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
-import type { ManifestTransform } from 'workbox-build'
+import type { ManifestEntry, ManifestTransform } from 'workbox-build'
 import type { KitOptions } from './types'
 
 export function configureSvelteKitOptions(
@@ -76,6 +78,7 @@ export function configureSvelteKitOptions(
   if (!config.manifestTransforms) {
     config.manifestTransforms = [createManifestTransform(
       base,
+      config.globDirectory,
       options.strategies === 'injectManifest'
         ? undefined
         : (options.manifestFilename ?? 'manifest.webmanifest'),
@@ -92,7 +95,12 @@ export function configureSvelteKitOptions(
   }
 }
 
-function createManifestTransform(base: string, webManifestName?: string, options?: KitOptions): ManifestTransform {
+function createManifestTransform(
+  base: string,
+  outDir: string,
+  webManifestName?: string,
+  options?: KitOptions,
+): ManifestTransform {
   return async (entries) => {
     const defaultAdapterFallback = 'prerendered/fallback.html'
     const suffix = options?.trailingSlash === 'always' ? '/' : ''
@@ -149,6 +157,25 @@ function createManifestTransform(base: string, webManifestName?: string, options
         return e
       })
 
+    if (options?.spa && options?.adapterFallback) {
+      const name = typeof options.spa === 'object' && options.spa.fallbackMapping
+        ? options.spa.fallbackMapping
+        : options.adapterFallback
+      if (typeof options.spa === 'object' && typeof options.spa.fallbackRevision === 'function') {
+        manifest.push({
+          url: name,
+          revision: await options.spa.fallbackRevision(),
+          size: 0,
+        })
+      }
+      else {
+        manifest.push(await buildManifestEntry(
+          name,
+          resolve(outDir, 'client/_app/version.json'),
+        ))
+      }
+    }
+
     if (!webManifestName)
       return { manifest }
 
@@ -182,4 +209,25 @@ function buildGlobIgnores(globIgnores?: string[]) {
   }
 
   return ['server/**']
+}
+
+function buildManifestEntry(url: string, path: string): Promise<ManifestEntry & { size: number }> {
+  return new Promise((resolve, reject) => {
+    const cHash = crypto.createHash('MD5')
+    const stream = fs.createReadStream(path)
+    stream.on('error', (err) => {
+      reject(err)
+    })
+    stream.on('data', (chunk) => {
+      // @ts-expect-error TS2345: Argument of type string | Buffer is not assignable to parameter of type BinaryLike
+      cHash.update(chunk)
+    })
+    stream.on('end', () => {
+      return resolve({
+        url,
+        size: 0,
+        revision: `${cHash.digest('hex')}`,
+      })
+    })
+  })
 }
