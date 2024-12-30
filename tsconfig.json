@@ -2,15 +2,15 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "ESNext",
-    "noEmit": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
     "types": [
       "vite-plugin-pwa"
-    ]
+    ],
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "exclude": [
     "dist",

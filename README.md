@@ -27,7 +27,6 @@ Zero-config PWA Plugin for SvelteKit
   </a>
 </p>
 
-
 ## 🚀 Features
 
 - 📖 [**Documentation & guides**](https://vite-pwa-org.netlify.app/)
@@ -51,12 +50,12 @@ Zero-config PWA Plugin for SvelteKit
 > From v0.2.0, `@vite-pwa/sveltekit` requires **SvelteKit 1.3.1 or above**.
 
 ```bash
-npm i @vite-pwa/sveltekit -D 
+npm i @vite-pwa/sveltekit -D
 
-# yarn 
+# yarn
 yarn add @vite-pwa/sveltekit -D
 
-# pnpm 
+# pnpm
 pnpm add @vite-pwa/sveltekit -D
 ```
 
@@ -86,7 +85,6 @@ Check out the type declaration [src/types.ts](./src/types.ts) and the following 
 
 - [Web app manifests](https://developer.mozilla.org/en-US/docs/Web/Manifest)
 - [Workbox](https://developers.google.com/web/tools/workbox)
-
 
 ## 📄 License
 

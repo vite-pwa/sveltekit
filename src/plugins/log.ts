@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { relative } from 'node:path'
-import type { BuildResult } from 'workbox-build'
 import type { ResolvedConfig } from 'vite'
+import type { BuildResult } from 'workbox-build'
 import { cyan, dim, green, magenta, yellow } from 'kolorist'
 import { version } from '../../package.json'
 
@@ -14,8 +14,8 @@ export function logWorkboxResult(strategy: string, viteOptions: ResolvedConfig, 
   if (!buildResult) {
     console.info([
       '',
-          `${cyan(`SvelteKit VitePWA v${version}`)}`,
-          `mode      ${magenta(strategy)}`,
+      `${cyan(`SvelteKit VitePWA v${version}`)}`,
+      `mode      ${magenta(strategy)}`,
     ].join('\n'))
     return
   }
@@ -25,11 +25,11 @@ export function logWorkboxResult(strategy: string, viteOptions: ResolvedConfig, 
   if (logLevel === 'info') {
     console.info([
       '',
-            `${cyan(`SvelteKit VitePWA v${version}`)}`,
-            `mode      ${magenta(strategy)}`,
-            `precache  ${green(`${count} entries`)} ${dim(`(${(size / 1024).toFixed(2)} KiB)`)}`,
-            'files generated',
-            ...filePaths.map(p => `  ${dim(relative(root, p))}`),
+      `${cyan(`SvelteKit VitePWA v${version}`)}`,
+      `mode      ${magenta(strategy)}`,
+      `precache  ${green(`${count} entries`)} ${dim(`(${(size / 1024).toFixed(2)} KiB)`)}`,
+      'files generated',
+      ...filePaths.map(p => `  ${dim(relative(root, p))}`),
     ].join('\n'))
   }
 
