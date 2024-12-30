@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import type { ResolvedConfig } from 'vite'
-import type { ManifestTransform } from 'workbox-build'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
+import type { ManifestTransform } from 'workbox-build'
 import type { KitOptions } from './types'
 
 export function configureSvelteKitOptions(
