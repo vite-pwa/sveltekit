@@ -1,6 +1,4 @@
 import { resolve } from 'node:path'
-import crypto from 'node:crypto'
-import fs from 'node:fs'
 import type { ResolvedConfig } from 'vite'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import type { ManifestEntry, ManifestTransform } from 'workbox-build'
@@ -120,9 +118,13 @@ function createManifestTransform(
         let url = e.url
         // client assets in `.svelte-kit/output/client` folder.
         // SSG pages in `.svelte-kit/output/prerendered/pages` folder.
+        // SPA pages in `.svelte-kit/output/prerendered/dependencies/` folder.
+        // static adapter with load functions in `.svelte-kit/output/prerendered/dependencies/<page>/_data.json`.
         // fallback page in `.svelte-kit/output/prerendered` folder (fallback.html is the default).
         if (url.startsWith('client/'))
           url = url.slice(7)
+        else if (url.startsWith('prerendered/dependencies/'))
+          url = url.slice(25)
         else if (url.startsWith('prerendered/pages/'))
           url = url.slice(18)
         else if (url === defaultAdapterFallback)
@@ -186,7 +188,7 @@ function createManifestTransform(
 function buildGlobPatterns(globPatterns?: string[]) {
   if (globPatterns) {
     if (!globPatterns.some(g => g.startsWith('prerendered/')))
-      globPatterns.push('prerendered/**/*.html')
+      globPatterns.push('prerendered/**/*.{html,json,js}')
 
     if (!globPatterns.some(g => g.startsWith('client/')))
       globPatterns.push('client/**/*.{js,css,ico,png,svg,webp,webmanifest}')
@@ -197,7 +199,7 @@ function buildGlobPatterns(globPatterns?: string[]) {
     return globPatterns
   }
 
-  return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.html']
+  return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.{html,json,js}']
 }
 
 function buildGlobIgnores(globIgnores?: string[]) {
@@ -211,10 +213,15 @@ function buildGlobIgnores(globIgnores?: string[]) {
   return ['server/**']
 }
 
-function buildManifestEntry(url: string, path: string): Promise<ManifestEntry & { size: number }> {
+async function buildManifestEntry(url: string, path: string): Promise<ManifestEntry & { size: number }> {
+  const [crypto, createReadStream] = await Promise.all([
+    import('node:crypto').then(m => m.default),
+    import('node:fs').then(m => m.createReadStream),
+  ])
+
   return new Promise((resolve, reject) => {
     const cHash = crypto.createHash('MD5')
-    const stream = fs.createReadStream(path)
+    const stream = createReadStream(path)
     stream.on('error', (err) => {
       reject(err)
     })
