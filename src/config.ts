@@ -118,8 +118,7 @@ function createManifestTransform(
         let url = e.url
         // client assets in `.svelte-kit/output/client` folder.
         // SSG pages in `.svelte-kit/output/prerendered/pages` folder.
-        // SPA pages in `.svelte-kit/output/prerendered/dependencies/` folder.
-        // static adapter with load functions in `.svelte-kit/output/prerendered/dependencies/<page>/_data.json`.
+        // static adapter with load functions in `.svelte-kit/output/prerendered/dependencies/<page>/__data.json`.
         // fallback page in `.svelte-kit/output/prerendered` folder (fallback.html is the default).
         if (url.startsWith('client/'))
           url = url.slice(7)
@@ -188,7 +187,7 @@ function createManifestTransform(
 function buildGlobPatterns(globPatterns?: string[]) {
   if (globPatterns) {
     if (!globPatterns.some(g => g.startsWith('prerendered/')))
-      globPatterns.push('prerendered/**/*.{html,json,js}')
+      globPatterns.push('prerendered/**/*.{html,json}')
 
     if (!globPatterns.some(g => g.startsWith('client/')))
       globPatterns.push('client/**/*.{js,css,ico,png,svg,webp,webmanifest}')
@@ -199,7 +198,7 @@ function buildGlobPatterns(globPatterns?: string[]) {
     return globPatterns
   }
 
-  return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.{html,json,js}']
+  return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.{html,json}']
 }
 
 function buildGlobIgnores(globIgnores?: string[]) {
