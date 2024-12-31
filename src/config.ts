@@ -1,7 +1,7 @@
 import { resolve } from 'node:path'
 import type { ResolvedConfig } from 'vite'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
-import type { ManifestTransform } from 'workbox-build'
+import type { ManifestEntry, ManifestTransform } from 'workbox-build'
 import type { KitOptions } from './types'
 
 export function configureSvelteKitOptions(
@@ -76,6 +76,7 @@ export function configureSvelteKitOptions(
   if (!config.manifestTransforms) {
     config.manifestTransforms = [createManifestTransform(
       base,
+      config.globDirectory,
       options.strategies === 'injectManifest'
         ? undefined
         : (options.manifestFilename ?? 'manifest.webmanifest'),
@@ -92,7 +93,12 @@ export function configureSvelteKitOptions(
   }
 }
 
-function createManifestTransform(base: string, webManifestName?: string, options?: KitOptions): ManifestTransform {
+function createManifestTransform(
+  base: string,
+  outDir: string,
+  webManifestName?: string,
+  options?: KitOptions,
+): ManifestTransform {
   return async (entries) => {
     const defaultAdapterFallback = 'prerendered/fallback.html'
     const suffix = options?.trailingSlash === 'always' ? '/' : ''
@@ -112,9 +118,12 @@ function createManifestTransform(base: string, webManifestName?: string, options
         let url = e.url
         // client assets in `.svelte-kit/output/client` folder.
         // SSG pages in `.svelte-kit/output/prerendered/pages` folder.
+        // static adapter with load functions in `.svelte-kit/output/prerendered/dependencies/<page>/__data.json`.
         // fallback page in `.svelte-kit/output/prerendered` folder (fallback.html is the default).
         if (url.startsWith('client/'))
           url = url.slice(7)
+        else if (url.startsWith('prerendered/dependencies/'))
+          url = url.slice(25)
         else if (url.startsWith('prerendered/pages/'))
           url = url.slice(18)
         else if (url === defaultAdapterFallback)
@@ -149,6 +158,25 @@ function createManifestTransform(base: string, webManifestName?: string, options
         return e
       })
 
+    if (options?.spa && options?.adapterFallback) {
+      const name = typeof options.spa === 'object' && options.spa.fallbackMapping
+        ? options.spa.fallbackMapping
+        : options.adapterFallback
+      if (typeof options.spa === 'object' && typeof options.spa.fallbackRevision === 'function') {
+        manifest.push({
+          url: name,
+          revision: await options.spa.fallbackRevision(),
+          size: 0,
+        })
+      }
+      else {
+        manifest.push(await buildManifestEntry(
+          name,
+          resolve(outDir, 'client/_app/version.json'),
+        ))
+      }
+    }
+
     if (!webManifestName)
       return { manifest }
 
@@ -159,7 +187,7 @@ function createManifestTransform(base: string, webManifestName?: string, options
 function buildGlobPatterns(globPatterns?: string[]) {
   if (globPatterns) {
     if (!globPatterns.some(g => g.startsWith('prerendered/')))
-      globPatterns.push('prerendered/**/*.html')
+      globPatterns.push('prerendered/**/*.{html,json}')
 
     if (!globPatterns.some(g => g.startsWith('client/')))
       globPatterns.push('client/**/*.{js,css,ico,png,svg,webp,webmanifest}')
@@ -170,7 +198,7 @@ function buildGlobPatterns(globPatterns?: string[]) {
     return globPatterns
   }
 
-  return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.html']
+  return ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.{html,json}']
 }
 
 function buildGlobIgnores(globIgnores?: string[]) {
@@ -182,4 +210,30 @@ function buildGlobIgnores(globIgnores?: string[]) {
   }
 
   return ['server/**']
+}
+
+async function buildManifestEntry(url: string, path: string): Promise<ManifestEntry & { size: number }> {
+  const [crypto, createReadStream] = await Promise.all([
+    import('node:crypto').then(m => m.default),
+    import('node:fs').then(m => m.createReadStream),
+  ])
+
+  return new Promise((resolve, reject) => {
+    const cHash = crypto.createHash('MD5')
+    const stream = createReadStream(path)
+    stream.on('error', (err) => {
+      reject(err)
+    })
+    stream.on('data', (chunk) => {
+      // @ts-expect-error TS2345: Argument of type string | Buffer is not assignable to parameter of type BinaryLike
+      cHash.update(chunk)
+    })
+    stream.on('end', () => {
+      return resolve({
+        url,
+        size: 0,
+        revision: `${cHash.digest('hex')}`,
+      })
+    })
+  })
 }
