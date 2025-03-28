@@ -2,7 +2,7 @@
   "name": "@vite-pwa/sveltekit",
   "type": "module",
   "version": "0.6.7",
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@10.7.0",
   "description": "Zero-config PWA for SvelteKit",
   "author": "antfu <anthonyfu117@hotmail.com>",
   "license": "MIT",

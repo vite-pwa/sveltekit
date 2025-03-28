@@ -1,2 +1,7 @@
 packages:
   - examples/*
+ignoredBuiltDependencies:
+  - '@sveltejs/kit'
+  - esbuild
+onlyBuiltDependencies:
+  - sharp
