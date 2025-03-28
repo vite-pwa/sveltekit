@@ -1,8 +1,8 @@
-import { resolve } from 'node:path'
 import type { ResolvedConfig } from 'vite'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import type { ManifestEntry, ManifestTransform } from 'workbox-build'
 import type { KitOptions } from './types'
+import { resolve } from 'node:path'
 
 export function configureSvelteKitOptions(
   kit: KitOptions,
@@ -26,8 +26,8 @@ export function configureSvelteKitOptions(
 
   let config: Partial<
     import('workbox-build').BasePartial
-    & import('workbox-build').GlobPartial
-    & import('workbox-build').RequiredGlobDirectoryPartial
+      & import('workbox-build').GlobPartial
+      & import('workbox-build').RequiredGlobDirectoryPartial
   >
 
   if (options.strategies === 'injectManifest') {

@@ -1,10 +1,11 @@
+import process from 'node:process'
 import { defineConfig, devices } from '@playwright/test'
 
-const url = 'http://localhost:4173'
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-ignore
 import { nodeAdapter } from './adapter.mjs'
+
+const url = 'http://localhost:4173'
 
 /**
  * Read environment variables from file.
@@ -43,7 +44,7 @@ export default defineConfig({
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: url,
-    //offline: true,
+    // offline: true,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -93,4 +94,4 @@ export default defineConfig({
     url,
     reuseExistingServer: !process.env.CI,
   },
-});
+})

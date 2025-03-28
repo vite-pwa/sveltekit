@@ -3,14 +3,14 @@
     "target": "es2020",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "types": [
       "vite-plugin-pwa"
     ],
-    "resolveJsonModule": true,
-    "noEmit": true,
     "strict": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "noEmit": true
   },
   "exclude": [
     "dist",
