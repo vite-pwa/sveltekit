@@ -1,72 +1,72 @@
-<script lang="ts">
-	import { useRegisterSW } from 'virtual:pwa-register/svelte';
+<script lang='ts'>
+  import { useRegisterSW } from 'virtual:pwa-register/svelte'
 
-	// replaced dynamically
-	const buildDate = __DATE__
+  // replaced dynamically
+  const buildDate = __DATE__
 
-	const {
-		offlineReady,
-		needRefresh,
-		updateServiceWorker
-	} = useRegisterSW({
-		onRegisteredSW(swUrl, r) {
-			r && setInterval(async () => {
-				if (r.installing || !navigator)
-					return
+  const {
+    offlineReady,
+    needRefresh,
+    updateServiceWorker,
+  } = useRegisterSW({
+    onRegisteredSW(swUrl, r) {
+      r && setInterval(async () => {
+        if (r.installing || !navigator)
+          return
 
-				if (('connection' in navigator) && !navigator.onLine)
-					return
+        if (('connection' in navigator) && !navigator.onLine)
+          return
 
-				const resp = await fetch(swUrl, {
-					cache: 'no-store',
-					headers: {
-						'cache': 'no-store',
-						'cache-control': 'no-cache',
-					},
-				})
+        const resp = await fetch(swUrl, {
+          cache: 'no-store',
+          headers: {
+            'cache': 'no-store',
+            'cache-control': 'no-cache',
+          },
+        })
 
-				if (resp?.status === 200)
-					await r.update()
-			}, 20000 /* 20s for testing purposes */)
-		},
-		onRegisterError(error) {
-			console.log('SW registration error', error)
-		},
-	})
-	const close = () => {
-		offlineReady.set(false)
-		needRefresh.set(false)
-	}
+        if (resp?.status === 200)
+          await r.update()
+      }, 20000 /* 20s for testing purposes */)
+    },
+    onRegisterError(error) {
+      console.log('SW registration error', error)
+    },
+  })
+  const close = () => {
+    offlineReady.set(false)
+    needRefresh.set(false)
+  }
 
-	let toast = $derived($offlineReady || $needRefresh)
+  const toast = $derived($offlineReady || $needRefresh)
 </script>
 
 {#if toast}
-	<div class="pwa-toast" role="alert">
-		<div class="message">
-			{#if $offlineReady}
-				<span>
-					App ready to work offline
-				</span>
-			{:else}
-				<span>
-					New content available, click on reload button to update.
-				</span>
-			{/if}
-		</div>
-		{#if $needRefresh}
-			<button onclick={() => updateServiceWorker(true)}>
-				Reload
-			</button>
-		{/if}
-		<button onclick={close}>
-			Close
-		</button>
-	</div>
+  <div class='pwa-toast' role='alert'>
+    <div class='message'>
+      {#if $offlineReady}
+        <span>
+          App ready to work offline
+        </span>
+      {:else}
+        <span>
+          New content available, click on reload button to update.
+        </span>
+      {/if}
+    </div>
+    {#if $needRefresh}
+      <button onclick={() => updateServiceWorker(true)}>
+        Reload
+      </button>
+    {/if}
+    <button onclick={close}>
+      Close
+    </button>
+  </div>
 {/if}
 
 <div class='pwa-date'>
-	{ buildDate }
+  {buildDate}
 </div>
 
 <style>

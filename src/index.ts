@@ -1,7 +1,7 @@
 import type { Plugin } from 'vite'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
-import { VitePWA } from 'vite-plugin-pwa'
 import type { SvelteKitPWAOptions } from './types'
+import { VitePWA } from 'vite-plugin-pwa'
 import { configureSvelteKitOptions } from './config'
 import { SvelteKitPlugin } from './plugins/SvelteKitPlugin'
 

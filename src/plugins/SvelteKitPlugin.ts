@@ -1,7 +1,7 @@
+import type { Plugin, ResolvedConfig } from 'vite'
+import type { VitePluginPWAAPI, VitePWAOptions } from 'vite-plugin-pwa'
 import { lstat, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import type { Plugin, ResolvedConfig } from 'vite'
-import type { VitePWAOptions, VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { glob } from 'tinyglobby'
 
 export function SvelteKitPlugin(

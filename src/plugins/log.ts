@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-import { relative } from 'node:path'
 import type { ResolvedConfig } from 'vite'
 import type { BuildResult } from 'workbox-build'
+import { relative } from 'node:path'
 import { cyan, dim, green, magenta, yellow } from 'kolorist'
 import { version } from '../../package.json'
 
