@@ -29,7 +29,7 @@ export function SvelteKitPlugin(
       if (assetsGenerator)
         assetsGenerator.injectManifestIcons()
 
-      api.generateBundle(bundle)
+      api.generateBundle(bundle, this)
     },
     writeBundle: {
       sequential: true,
