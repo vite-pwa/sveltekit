@@ -1,6 +1,7 @@
 {
   "name": "sveltekit-ts-assets-generator",
   "type": "module",
+  "private": true,
   "version": "0.0.0",
   "scripts": {
     "sw-dev": "vite dev",
