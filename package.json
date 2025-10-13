@@ -2,7 +2,7 @@
   "name": "@vite-pwa/sveltekit",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.18.2",
   "description": "Zero-config PWA for SvelteKit",
   "author": "antfu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -45,8 +45,8 @@
     "build": "unbuild",
     "lint": "eslint .",
     "lint:fix": "nr lint --fix",
-    "prepublishOnly": "npm run build",
-    "release": "bumpp && npm publish",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp",
     "test": "pnpm run -C examples/sveltekit-ts test && pnpm run -C examples/sveltekit-ts-assets-generator test"
   },
   "peerDependencies": {
@@ -61,7 +61,7 @@
   "dependencies": {
     "kolorist": "^1.8.0",
     "tinyglobby": "^0.2.9",
-    "vite-plugin-pwa": "^1.0.0"
+    "vite-plugin-pwa": "^1.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
