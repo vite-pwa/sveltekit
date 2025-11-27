@@ -61,7 +61,7 @@
   "dependencies": {
     "kolorist": "^1.8.0",
     "tinyglobby": "^0.2.9",
-    "vite-plugin-pwa": "^1.1.0"
+    "vite-plugin-pwa": "^1.2.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
