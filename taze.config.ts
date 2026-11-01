@@ -31,7 +31,6 @@ export default defineConfig({
     // static adapter
     '@sveltejs/adapter-static@3',
     // examples
-    '@types/cookie',
     '@types/lib',
     '@fontsource/fira-mono',
     'eslint@8.57.0',
@@ -40,6 +39,7 @@ export default defineConfig({
     '@typescript-eslint/eslint-plugin@8.16.0',
     '@typescript-eslint/eslint-parser@8.16.0',
     '@types/cookie@0.6.0',
+    'cookie@0.6.0',
   ],
   githubActions: {
     style: 'sha',

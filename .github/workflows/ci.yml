@@ -2,7 +2,7 @@ name: CI
 
 env:
   # install playwright binary manually (because pnpm only runs install script once)
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
 
 on:
   push:
@@ -73,7 +73,7 @@ jobs:
           check-latest: true
           cache: pnpm
 
-       # Install playwright's binary under custom directory to cache
+      # Install playwright's binary under custom directory to cache
       - name: (non-windows) Set Playwright path and Get playwright version
         if: runner.os != 'Windows'
         run: |
