@@ -7,3 +7,4 @@ dev-dist
 /test-results/
 /playwright-report/
 /playwright/.cache/
+examples/**/build

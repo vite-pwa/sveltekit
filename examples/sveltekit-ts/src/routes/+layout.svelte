@@ -1,35 +1,32 @@
 <script lang='ts'>
-  import Header from '$lib/header/Header.svelte'
-  import { pwaInfo } from 'virtual:pwa-info'
-  import '../app.css'
+	import type { LayoutProps } from './$types';
+	import Header from '#lib/header/Header.svelte'
+	import { pwaInfo } from 'virtual:pwa-info'
+	import '../app.css'
 
-  interface Props {
-    children?: import('svelte').Snippet
-  }
+	const { children }: LayoutProps = $props()
 
-  const { children }: Props = $props()
-
-  const webManifest = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '')
+	const webManifest = $derived(pwaInfo ? pwaInfo.webManifest.linkTag : '')
 
 </script>
 
 <svelte:head>
-  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-  {@html webManifest}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html webManifest}
 </svelte:head>
 
 <Header />
 
 <main>
-  {@render children?.()}
+	{@render children?.()}
 </main>
 
 <footer>
-  <p>visit <a href='https://kit.svelte.dev'>kit.svelte.dev</a> to learn SvelteKit</p>
+	<p>visit <a href='https://kit.svelte.dev'>kit.svelte.dev</a> to learn SvelteKit</p>
 </footer>
 
-{#await import('$lib/ReloadPrompt.svelte') then { default: ReloadPrompt }}
-  <ReloadPrompt />
+{#await import('#lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt }}
+	<ReloadPrompt />
 {/await}
 
 <style>

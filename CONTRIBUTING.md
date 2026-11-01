@@ -12,9 +12,10 @@ To develop and test the `@vite-pwa/sveltekit` package:
 
 1. Fork the `@vite-pwa/sveltekit` repository to your own GitHub account and then clone it to your local device.
 
-2. Ensure using the latest Node.js (18.13+)
+2. Ensure using the latest Node.js 24.x (`>= 24.22.1`: required to run the build scripts, check also `.node-version` for the minimal version).
 
-3. `@vite-pwa/sveltekit` uses pnpm v8. If you are working on multiple projects with different versions of pnpm, it's recommend to enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`.
+3. `@vite-pwa/sveltekit` uses pnpm (check `packageManager` version at `package.json`). If you are working on multiple projects with different versions of pnpm, it's recommend to enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`.
+
 
 4. Check out a branch where you can work and commit your changes:
 ```shell

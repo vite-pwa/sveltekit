@@ -1,6 +1,8 @@
 <script lang='ts'>
-  import { page } from '$app/stores'
-  import logo from './svelte-logo.svg'
+  import { page } from '$app/state'
+  import { asset, resolve } from "$app/paths";
+
+  const url = $derived(page.url);
 
   // replaced dynamically
   const buildDate = __DATE__
@@ -9,7 +11,7 @@
 <header>
   <div class='corner'>
     <a href='https://kit.svelte.dev'>
-      <img src={logo} alt='SvelteKit' />
+      <img src={asset('favicon.svg')} alt='SvelteKit' />
     </a>
   </div>
 
@@ -18,11 +20,11 @@
       <path d='M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z' />
     </svg>
     <ul>
-      <li class:active={$page.url.pathname === '/'}>
-        <a href='/'>Home</a>
+      <li class:active={url.pathname === '/'}>
+        <a href={resolve('/')}>Home</a>
       </li>
-      <li class:active={$page.url.pathname === '/about'}>
-        <a href='/about'>About</a>
+      <li class:active={url.pathname === '/about'}>
+        <a href={resolve('/about')}>About</a>
       </li>
     </ul>
     <svg viewBox='0 0 2 3' aria-hidden='true'>

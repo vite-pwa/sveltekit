@@ -5,16 +5,23 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "types": [
-      "vite-plugin-pwa"
+      "node",
+      "@unplugin-pwa/core",
+      "@unplugin-pwa/vite",
+      "@vite-pwa/workbox-build"
     ],
+    "allowImportingTsExtensions": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noEmit": true
+    "noEmit": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
+  "include": ["src/**/*"],
   "exclude": [
-    "dist",
-    "node_modules",
-    "test"
+    "dist/**",
+    "node_modules/**",
+    "examples/**"
   ]
 }

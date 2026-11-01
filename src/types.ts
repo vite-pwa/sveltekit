@@ -1,29 +1,23 @@
-import type { VitePWAOptions } from 'vite-plugin-pwa'
+import type { VitePWAOptions, VitePWAStrategy } from '@unplugin-pwa/core'
+import type { SWType } from '@vite-pwa/workbox-build/types'
 
 export interface KitOptions {
   /**
-   * The base path for your application: by default will use the Vite base.
+   * The directory where SvelteKit keeps its stuff, including static assets (such as JS and CSS) and internally-used routes.
    *
-   * @deprecated since ^0.1.0 version, the plugin has SvelteKit ^1.0.0 as peer dependency, Vite's base is now properly configured.
-   * @default '/'
-   * @see https://kit.svelte.dev/docs/configuration#paths
+   * Required if you are using legacy SvelteKit and changing the appDir option.
+   *
+   * @default _app
+   * @see https://svelte.dev/docs/kit/configuration#appDir
    */
-  base?: string
-
+  appDir?: string
   /**
-   * The static folder for your application.
+   * The directory where SvelteKit keeps its static assets (such as JS and CSS).
    *
-   * @default 'static'
-   * @see https://kit.svelte.dev/docs/configuration#files
+   * @default static
+   * @see https://svelte.dev/docs/kit/configuration#assets
    */
   assets?: string
-
-  /**
-   * @default '.svelte-kit'
-   * @see https://kit.svelte.dev/docs/configuration#outdir
-   */
-  outDir?: string
-
   /**
    * @see https://kit.svelte.dev/docs/adapter-static#options-fallback
    */
@@ -34,12 +28,6 @@ export interface KitOptions {
    * @default 'never'
    */
   trailingSlash?: 'never' | 'always' | 'ignore'
-
-  /**
-   * @default `_app`
-   * @see https://kit.svelte.dev/docs/configuration#appdir
-   */
-  appDir?: string
 
   /**
    * Include `${appDir}/version.json` in the service worker precache manifest?
@@ -75,6 +63,9 @@ export interface KitOptions {
   }
 }
 
-export interface SvelteKitPWAOptions extends Partial<VitePWAOptions> {
+export type SvelteKitPWAOptions<
+  UserStrategy extends VitePWAStrategy,
+  T extends SWType,
+> = VitePWAOptions<UserStrategy, T> & {
   kit?: KitOptions
 }
