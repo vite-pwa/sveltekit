@@ -1,0 +1,25 @@
+# See https://github.com/actions/labeler
+
+examples:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'examples/**'
+
+# Other categories
+🚨 action:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/workflows/**'
+      - '.github/actions/**'
+      - taze.config.ts
+
+📦 dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - pnpm-lock.yaml
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - README.md
+      - CONTRIBUTING.md

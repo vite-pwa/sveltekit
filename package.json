@@ -2,7 +2,7 @@
   "name": "@vite-pwa/sveltekit",
   "type": "module",
   "version": "1.1.0",
-  "packageManager": "pnpm@10.18.2",
+  "packageManager": "pnpm@11.25.0",
   "description": "Zero-config PWA for SvelteKit",
   "author": "antfu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -18,62 +18,91 @@
     "workbox",
     "pwa",
     "vite",
-    "vite-plugin"
+    "unplugin-pwa"
   ],
+  "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.mjs"
+    ".": "./dist/index.mjs",
+    "./config": "./dist/config.mjs",
+    "./legacy": "./dist/legacy.mjs",
+    "./types": {
+      "types": "./dist/index.d.mts"
     },
     "./package.json": "./package.json"
   },
-  "types": "dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/index.d.ts"
-      ]
-    }
-  },
+  "types": "dist/index.d.mts",
   "files": [
     "dist"
   ],
   "engines": {
-    "node": ">=18.13"
+    "node": ">=22.14.0"
   },
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown",
+    "lint:sveltekit-ts": "pnpm run -C examples/sveltekit-ts lint",
+    "lint:sveltekit-ts-legacy": "pnpm run -C examples/sveltekit-ts-legacy lint",
+    "lint:sveltekit-ts-assets-generator-legacy": "pnpm run -C examples/sveltekit-ts-assets-generator-legacy lint",
     "lint": "eslint .",
     "lint:fix": "nr lint --fix",
-    "prepublishOnly": "pnpm build",
-    "release": "bumpp",
-    "test": "pnpm run -C examples/sveltekit-ts test && pnpm run -C examples/sveltekit-ts-assets-generator test"
+    "lint:all": "nr lint && nr lint:sveltekit-ts && nr lint:sveltekit-ts-legacy && nr lint:sveltekit-ts-assets-generator-legacy",
+    "lint:fix:all": "nr lint:fix && nr lint:fix:sveltekit-ts && nr lint:fix:sveltekit-ts-legacy && nr lint:fix:sveltekit-ts-assets-generator-legacy",
+    "prepack": "pnpm build",
+    "update:deps": "taze -I",
+    "test:typecheck": "tsc --noEmit",
+    "test:typecheck:sveltekit-ts": "pnpm run -C examples/sveltekit-ts check",
+    "test:typecheck:sveltekit-ts-legacy": "pnpm run -C examples/sveltekit-ts-legacy check",
+    "test:typecheck:sveltekit-ts-assets-generator-legacy": "pnpm run -C examples/sveltekit-ts-assets-generator-legacy check",
+    "test:typecheck:all": "nr test:typecheck && nr test:typecheck:sveltekit-ts && nr test:typecheck:sveltekit-ts-legacy && nr test:typecheck:sveltekit-ts-assets-generator-legacy",
+    "test:sveltekit-ts": "pnpm run -C examples/sveltekit-ts test",
+    "test:sveltekit-ts-legacy": "pnpm run -C examples/sveltekit-ts-legacy test",
+    "test:sveltekit-ts-assets-generator-legacy": "pnpm run -C examples/sveltekit-ts-assets-generator-legacy test",
+    "test": "nr test:sveltekit-ts && nr test:sveltekit-ts-legacy && nr test:sveltekit-ts-assets-generator-legacy"
   },
   "peerDependencies": {
-    "@sveltejs/kit": "^1.3.1 || ^2.0.1",
-    "@vite-pwa/assets-generator": "^1.0.0"
+    "@sveltejs/kit": "^1.3.1 || ^2.0.1 || ^3.0.0",
+    "@vite-pwa/assets-generator": "^1.0.0 || ^2.0.0",
+    "magicast": "^0.5.0",
+    "rolldown": "^1.0.0-0"
   },
   "peerDependenciesMeta": {
     "@vite-pwa/assets-generator": {
       "optional": true
+    },
+    "magicast": {
+      "optional": true
+    },
+    "rolldown": {
+      "optional": true
     }
   },
   "dependencies": {
-    "kolorist": "^1.8.0",
-    "tinyglobby": "^0.2.9",
-    "vite-plugin-pwa": "^1.2.0"
+    "@unplugin-pwa/core": "catalog:pwa",
+    "@unplugin-pwa/inspector": "catalog:pwa",
+    "@unplugin-pwa/vite": "catalog:pwa",
+    "@vite-pwa/workbox-build": "catalog:pwa",
+    "@vite-pwa/workbox-swkit": "catalog:pwa",
+    "@vite-pwa/workbox-window": "catalog:pwa",
+    "verkit": "catalog:utils"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.11.0",
-    "@antfu/ni": "^0.23.2",
-    "@types/debug": "^4.1.8",
-    "@types/node": "^18.17.15",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "bumpp": "^9.2.0",
-    "eslint": "^9.23.0",
-    "eslint-plugin-svelte": "^3.3.3",
-    "typescript": "^5.7.2",
-    "unbuild": "^3.2.0",
-    "vite": "^5.0.10"
+    "@antfu/eslint-config": "catalog:eslint",
+    "@antfu/ni": "catalog:utils",
+    "@arethetypeswrong/core": "catalog:utils",
+    "@playwright/test": "catalog:utils",
+    "@sveltejs/kit": "catalog:sveltekit3",
+    "@types/node": "catalog:types",
+    "@vite-pwa/assets-generator": "catalog:pwa",
+    "@vitejs/devtools": "catalog:utils",
+    "@vitest/coverage-v8": "catalog:test",
+    "@vitest/ui": "catalog:test",
+    "eslint": "catalog:eslint",
+    "eslint-plugin-antfu": "catalog:eslint",
+    "eslint-plugin-svelte": "catalog:eslint",
+    "playwright-core": "catalog:utils",
+    "publint": "catalog:utils",
+    "taze": "catalog:utils",
+    "tsdown": "catalog:build",
+    "typescript": "catalog:typescript",
+    "vite": "catalog:utils"
   }
 }

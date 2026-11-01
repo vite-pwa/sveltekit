@@ -1,36 +1,55 @@
-import type { Plugin } from 'vite'
-import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
-import type { SvelteKitPWAOptions } from './types'
-import { VitePWA } from 'vite-plugin-pwa'
-import { configureSvelteKitOptions } from './config'
-import { SvelteKitPlugin } from './plugins/SvelteKitPlugin'
+import type { VitePWAStrategy } from '@unplugin-pwa/core'
+import type { SWType } from '@vite-pwa/workbox-build/types'
+import type { SvelteKitPWAOptions } from './types.ts'
+import { sveltekit } from '@sveltejs/kit/vite'
+import { BuildPwaAssetsPlugin } from '@unplugin-pwa/vite/plugins/build-pwa-assets'
+import { BuildRegisterSWPlugin } from '@unplugin-pwa/vite/plugins/build-register-sw'
+import { DevPlugin } from '@unplugin-pwa/vite/plugins/dev'
+import { DevMiddlewarePlugin } from '@unplugin-pwa/vite/plugins/dev-middleware'
+import { DevAssetsMiddlewarePlugin } from '@unplugin-pwa/vite/plugins/dev-pwa-assets-middleware'
+import { DevtoolsPlugin } from '@unplugin-pwa/vite/plugins/devtools'
+import { InfoPlugin } from '@unplugin-pwa/vite/plugins/info'
+import { InspectorPlugin } from '@unplugin-pwa/vite/plugins/inspector'
+import { MainPlugin } from '@unplugin-pwa/vite/plugins/main'
+import { AssetsPlugin } from '@unplugin-pwa/vite/plugins/pwa-assets'
+import { VirtualModulesPlugin } from '@unplugin-pwa/vite/plugins/virtual-modules'
+import { SvelteKitAdapterWrapper } from './adapter.ts'
+import { createSvelteKitPWAContext } from './context.ts'
+import { SvelteKitBuildPlugin } from './plugins/build.ts'
 
-export function SvelteKitPWA(userOptions: Partial<SvelteKitPWAOptions> = {}): Plugin[] {
-  if (!userOptions.integration)
-    userOptions.integration = {}
-
-  userOptions.integration.closeBundleOrder = 'pre'
-  userOptions.integration.configureOptions = (
-    viteConfig,
+export function withPwa<
+  UserStrategy extends VitePWAStrategy,
+  T extends SWType,
+>(
+  config: Parameters<typeof sveltekit>[0] = {},
+  options: Partial<SvelteKitPWAOptions<UserStrategy, T>> = {},
+) {
+  const ctx = createSvelteKitPWAContext<UserStrategy, T>(
+    config,
     options,
-  ) => configureSvelteKitOptions(
-    userOptions.kit ?? {},
-    viteConfig,
-    options,
+    false,
   )
 
-  const plugins = VitePWA(userOptions)
-
-  const plugin = plugins.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
-  const resolveVitePluginPWAAPI = (): VitePluginPWAAPI | undefined => {
-    return plugin?.api
-  }
-
   return [
-    // remove the build plugin: we're using a custom one
-    ...plugins.filter(p => p && typeof p === 'object' && 'name' in p && p.name !== 'vite-plugin-pwa:build'),
-    SvelteKitPlugin(userOptions, resolveVitePluginPWAAPI),
+    sveltekit(Object.assign(
+      config,
+      {
+        adapter: SvelteKitAdapterWrapper(ctx, config.adapter),
+      },
+    )),
+    [
+      MainPlugin(ctx),
+      VirtualModulesPlugin(ctx),
+      InfoPlugin(ctx),
+      DevPlugin(ctx),
+      DevMiddlewarePlugin(ctx),
+      DevAssetsMiddlewarePlugin(ctx),
+      AssetsPlugin(ctx),
+      BuildPwaAssetsPlugin(ctx),
+      BuildRegisterSWPlugin(ctx),
+      SvelteKitBuildPlugin(ctx),
+      DevtoolsPlugin(ctx),
+      InspectorPlugin(ctx),
+    ],
   ]
 }
-
-export * from './types'

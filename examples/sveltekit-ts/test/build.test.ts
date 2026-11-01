@@ -1,10 +1,8 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error TS7016: Could not find a declaration file for module ../adapter.mjs.
 import { nodeAdapter } from '../adapter.mjs'
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error TS7016: Could not find a declaration file for module ../pwa.mjs.
 import { generateSW } from '../pwa.mjs'
 
 describe(`test-build: ${nodeAdapter ? 'node' : 'static'} adapter`, () => {
@@ -16,19 +14,19 @@ describe(`test-build: ${nodeAdapter ? 'node' : 'static'} adapter`, () => {
     const swContent = readFileSync(swName, 'utf-8')
     let match: RegExpMatchArray | null
     if (generateSW) {
-      match = swContent.match(/define\(\['\.\/(workbox-\w+)'/)
+      match = swContent.match(/importScripts\(['"]\.\/(workbox-\w+)\.js['"]\)/)
       expect(match && match.length === 2, `workbox-***.js entry not found in ${swName}`).toBeTruthy()
       const workboxName = `./build/${nodeAdapter ? 'client/' : ''}${match?.[1]}.js`
       expect(existsSync(workboxName), `${workboxName} doesn't exist`).toBeTruthy()
     }
-    match = swContent.match(/"url":\s*"manifest\.webmanifest"/)
+    match = swContent.match(/url:\s*['"`]manifest\.webmanifest['"`]/)
     expect(match && match.length === 1, 'missing manifest.webmanifest in sw precache manifest').toBeTruthy()
-    match = swContent.match(/"url":\s*"\/"/)
+    match = swContent.match(/url:\s*['"`]\.\/['"`]/)
     expect(match && match.length === 1, 'missing entry point route (/) in sw precache manifest').toBeTruthy()
-    match = swContent.match(/"url":\s*"about"/)
+    match = swContent.match(/url:\s*['"`]about['"`]/)
     expect(match && match.length === 1, 'missing about route (/about) in sw precache manifest').toBeTruthy()
     if (nodeAdapter) {
-      match = swContent.match(/"url":\s*"server\//)
+      match = swContent.match(/url:\s*['"`]server\//)
       expect(match === null, 'found server/ entries in sw precache manifest').toBeTruthy()
     }
   })

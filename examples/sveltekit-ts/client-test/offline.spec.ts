@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test'
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error TS7016: Could not find a declaration file for module ../pwa.mjs.
 import { generateSW } from '../pwa.mjs'
 
 test('Test offline and trailing slashes', async ({ browser }) => {
@@ -10,8 +9,6 @@ test('Test offline and trailing slashes', async ({ browser }) => {
   await offlinePage.goto('/')
   const offlineSwURL = await offlinePage.evaluate(async () => {
     const registration = await Promise.race([
-      // eslint-disable-next-line ts/ban-ts-comment
-      // @ts-ignore
       navigator.serviceWorker.ready,
       new Promise((_, reject) => setTimeout(() => reject(new Error('Service worker registration failed: time out')), 10000)),
     ])

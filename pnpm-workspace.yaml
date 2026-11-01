@@ -1,7 +1,149 @@
+autoInstallPeers: true
+
+catalogMode: prefer
+
+dedupePeers: true
+
+ignoreWorkspaceRootCheck: true
+
+linkWorkspacePackages: true
+
+verifyDepsBeforeRun: install
+
+preferWorkspacePackages: true
+
+shamefullyHoist: true
+
+shellEmulator: true
+
+strictPeerDependencies: false
+
+trustPolicy: no-downgrade
+
 packages:
-  - examples/*
-ignoredBuiltDependencies:
+  - examples/**
+
+overrides:
+  '@types/node': 'catalog:types'
+  chokidar: ^5.0.0
+  sharp: ^0.35.5
+  semver: ^7.8.5
+  why-is-node-running: 'catalog:utils'
+
+allowBuilds:
+  '@parcel/watcher': false
+  '@sveltejs/kit': true
+  core-js: false
+  esbuild: false
+  sharp: true
+
+catalogs:
+  build:
+    tsdown: ^0.23.4
+  eslint:
+    '@antfu/eslint-config': ^10.0.0
+    eslint: ^10.13.0
+    eslint-plugin-antfu: ^3.2.3
+    eslint-plugin-svelte: ^3.23.1
+  pwa:
+    '@unplugin-pwa/core': ^0.0.3
+    '@unplugin-pwa/inspector': ^0.0.3
+    '@unplugin-pwa/vite': ^0.0.3
+    '@vite-pwa/assets-generator': ^2.0.0
+    '@vite-pwa/workbox-build': ^8.0.13
+    '@vite-pwa/workbox-swkit': ^8.0.13
+    '@vite-pwa/workbox-window': ^8.0.13
+  sveltekit2legacy:
+    '@sveltejs/adapter-node': npm:@sveltejs/adapter-node@2.0.0
+    '@sveltejs/adapter-static': npm:@sveltejs/adapter-static@3.0.0
+    '@sveltejs/kit': npm:@sveltejs/kit@2.7.4
+    '@sveltejs/vite-plugin-svelte': npm:@sveltejs/vite-plugin-svelte@3.0.1
+    svelte: npm:svelte@5.1.9
+    svelte-check: npm:svelte-check@4.0.5
+    eslint: npm:eslint@8.57.0
+    eslint-plugin-svelte: npm:eslint-plugin-svelte@2.46.0
+  sveltekit2:
+    '@sveltejs/adapter-node': npm:@sveltejs/adapter-node@5.5.7
+    '@sveltejs/adapter-static': npm:@sveltejs/adapter-static@3.0.10
+    '@sveltejs/kit': npm:@sveltejs/kit@2.63.0
+    '@sveltejs/vite-plugin-svelte': npm:@sveltejs/vite-plugin-svelte@7.1.2
+    svelte: npm:svelte@5.56.1
+    svelte-check: npm:svelte-check@4.6.0
+  sveltekit3:
+    "@eslint/js": ^10.0.1
+    '@sveltejs/adapter-node': ^6.0.1
+    '@sveltejs/adapter-static': ^4.0.1
+    # broken versions
+    #    '@sveltejs/adapter-node': 6.0.0-next.10
+    #    '@sveltejs/adapter-static': 4.0.0-next.4
+    '@sveltejs/kit': ^3.1.1
+    '@sveltejs/vite-plugin-svelte': ^7.3.0
+    cookie: ^2.0.1
+    globals: ^17.6.0
+    svelte: ^5.57.2
+    svelte-check: ^4.7.7
+    typescript-eslint: ^8.60.1
+  test:
+    '@vitest/coverage-v8': ^5.0.5
+    '@vitest/ui': ^5.0.5
+    vitest: ^5.0.5
+  types:
+    '@types/debug': ^4.1.13
+    '@types/node': 24.19.2
+  typescript:
+    typescript: ~6.0.3
+  utils:
+    '@antfu/ni': ^25.0.0
+    '@arethetypeswrong/core': ^0.18.5
+    '@playwright/test': 1.64.1
+    '@vitejs/devtools': ^0.7.6
+    '@vitejs/devtools-kit': ^0.7.6
+    devframe: ^1.2.6
+    https-localhost: 4.7.2
+    magicast: ^0.5.5
+    playwright-core: 1.64.1
+    publint: ^0.3.25
+    rolldown: ^1.2.14
+    taze: 21.1.0
+    verkit: ^0.5.0
+    vite: ^8.3.5
+    vite-plugin-inspect: ^12.1.0
+    why-is-node-running: 3.2.3
+  # vite 5
+  vite5:
+    vite: npm:vite@5.3.6
+  # vite 6
+  vite6:
+    vite: npm:vite@6.4.3
+  # vite 7
+  vite7:
+    vite: npm:vite@7.3.6
+  # vite 6/7
+  vite-plugin-inspect-legacy:
+    vite-plugin-inspect: 11.4.1
+  vite-plugin-inspect-ancient:
+    vite-plugin-inspect: 0.7.42
+
+minimumReleaseAgeExclude:
+  - svelte
   - '@sveltejs/kit'
-  - esbuild
-onlyBuiltDependencies:
-  - sharp
+  - '@sveltejs/adapter-node'
+  - '@sveltejs/adapter-static'
+  - '@sveltejs/vite-plugin-svelte'
+  - 'svelte-check'
+  - vite
+  - '@unplugin-pwa/core'
+  - '@unplugin-pwa/inspector'
+  - '@unplugin-pwa/vite'
+  - '@vite-pwa/workbox-build'
+  - '@vite-pwa/workbox-swkit'
+  - '@vite-pwa/workbox-window'
+
+supportedArchitectures:
+  os:
+    - win32
+    - darwin
+    - current
+  cpu:
+    - x64
+    - arm64

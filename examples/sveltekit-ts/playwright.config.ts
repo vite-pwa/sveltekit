@@ -1,8 +1,6 @@
 import process from 'node:process'
 import { defineConfig, devices } from '@playwright/test'
 
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-ignore
 import { nodeAdapter } from './adapter.mjs'
 
 const url = 'http://localhost:4173'
