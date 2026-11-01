@@ -109,4 +109,4 @@ jobs:
         run: pnpm run test:typecheck:all
 
       - name: Test
-        run: pnpm run test
+        run: pnpm run test:ci
