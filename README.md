@@ -74,14 +74,13 @@ pnpm add @vite-pwa/sveltekit -D
 
 ## 🦄 Usage
 
-Add `SvelteKitPWA` plugin to `vite.config.js / vite.config.ts` and configure it.
-
 ### ⚠️ v2.0.0 Breaking Changes
 
 - **SvelteKit 3 Support:** The SvelteKit integration has been completely revamped. SvelteKit v3 removes the internal `$service-worker` module, and `v2.0.0` aligns with this new architecture.
 - **API Change:** The standalone `SvelteKitPWA()` plugin has been replaced by the `withPwa` wrapper, which now manages the `sveltekit()` plugin execution internally to correctly inject the PWA context and adapter.
-- **SvelteKit >= 2.63.0:** The SvelteKit team backported the removal of the service worker configuration to version 2.63.0. If you are using `v2.63.0+` or Kit v3, you can directly use the new `withPwa` wrapper. The plugin automatically detects the Kit version to conditionally enable the new Vite Environment API in the PWA context without manual configuration.
+- **SvelteKit >= 2.63.0:** The SvelteKit team backported the ability to pass the `svelte.config.js` configuration directly into the SvelteKit Vite plugin. If you are using `v2.63.0+` or Kit v3, you can directly use the new `withPwa` wrapper. The plugin automatically detects the Kit version to conditionally enable the new Vite Environment API in the PWA context without manual configuration.
 - **SvelteKit < 2.63.0 with `buildSW`:** If you are still using an older SvelteKit v2 version and opting for the `buildSW` strategy (formerly `injectManifest`), you **must** manually remove the service worker entry from your `svelte.config.js` to avoid conflicts with Kit's legacy SW behavior.
+  - **Legacy support (SvelteKit < 2.63.0)**: From `v2.0.0` you cannot register the service worker at `svelte.config.js` anymore, use this package or use SvelteKit's built-in service worker registration.
 
 ### v2.x (SvelteKit 3 & >= 2.63.0)
 
@@ -109,7 +108,26 @@ export default defineConfig({
 })
 ```
 
+### v2.x (SvelteKit < 2.63.0)
+
+Add `LegacySvelteKitPWA` plugin to `vite.config.js / vite.config.ts` and configure it.
+
+```ts
+// vite.config.js / vite.config.ts
+import { sveltekit } from '@sveltejs/kit/vite'
+import { LegacySvelteKitPWA } from '@vite-pwa/sveltekit/legacy'
+
+export default {
+  plugins: [
+    sveltekit(),
+    LegacySvelteKitPWA()
+  ]
+}
+```
+
 ### v1.x (Legacy SvelteKit < 2.63.0)
+
+Add `SvelteKitPWA` plugin to `vite.config.js / vite.config.ts` and configure it.
 
 ```ts
 // vite.config.js / vite.config.ts
