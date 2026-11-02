@@ -43,8 +43,8 @@
 		"typescript": "catalog:typescript",
 		"typescript-eslint": "catalog:sveltekit3",
 		"vite": "catalog:utils",
-		"vitest": "catalog:test",
-		"vite-plugin-inspect": "catalog:utils"
+		"vite-plugin-inspect": "catalog:utils",
+		"vitest": "catalog:test"
 	},
 	"imports": {
 		"#lib": "./src/lib/index.js",
