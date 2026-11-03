@@ -43,7 +43,7 @@ catalogs:
   eslint:
     '@antfu/eslint-config': ^10.0.0
     eslint: ^10.13.0
-    eslint-plugin-antfu: ^3.2.3
+    eslint-plugin-antfu: ^3.3.1
     eslint-plugin-svelte: ^3.23.1
   pwa:
     '@unplugin-pwa/core': ^0.0.3
@@ -57,18 +57,18 @@ catalogs:
     '@sveltejs/adapter-node': npm:@sveltejs/adapter-node@2.0.0
     '@sveltejs/adapter-static': npm:@sveltejs/adapter-static@3.0.0
     '@sveltejs/kit': npm:@sveltejs/kit@2.7.4
-    '@sveltejs/vite-plugin-svelte': npm:@sveltejs/vite-plugin-svelte@3.0.1
-    svelte: npm:svelte@5.1.9
-    svelte-check: npm:svelte-check@4.0.5
+    '@sveltejs/vite-plugin-svelte': npm:@sveltejs/vite-plugin-svelte@3.1.2
+    svelte: npm:svelte@5.57.3
+    svelte-check: npm:svelte-check@4.7.8
     eslint: npm:eslint@8.57.0
-    eslint-plugin-svelte: npm:eslint-plugin-svelte@2.46.0
+    eslint-plugin-svelte: npm:eslint-plugin-svelte@2.46.1
   sveltekit2:
     '@sveltejs/adapter-node': npm:@sveltejs/adapter-node@5.5.7
     '@sveltejs/adapter-static': npm:@sveltejs/adapter-static@3.0.10
     '@sveltejs/kit': npm:@sveltejs/kit@2.63.0
-    '@sveltejs/vite-plugin-svelte': npm:@sveltejs/vite-plugin-svelte@7.1.2
-    svelte: npm:svelte@5.56.1
-    svelte-check: npm:svelte-check@4.6.0
+    '@sveltejs/vite-plugin-svelte': npm:@sveltejs/vite-plugin-svelte@7.3.1
+    svelte: npm:svelte@5.57.3
+    svelte-check: npm:svelte-check@4.7.8
   sveltekit3:
     "@eslint/js": ^10.0.1
     '@sveltejs/adapter-node': ^6.0.1
@@ -77,12 +77,12 @@ catalogs:
     #    '@sveltejs/adapter-node': 6.0.0-next.10
     #    '@sveltejs/adapter-static': 4.0.0-next.4
     '@sveltejs/kit': ^3.1.1
-    '@sveltejs/vite-plugin-svelte': ^7.3.0
+    '@sveltejs/vite-plugin-svelte': ^7.3.1
     cookie: ^2.0.1
-    globals: ^17.6.0
-    svelte: ^5.57.2
-    svelte-check: ^4.7.7
-    typescript-eslint: ^8.60.1
+    globals: ^17.13.0
+    svelte: ^5.57.3
+    svelte-check: ^4.7.8
+    typescript-eslint: ^8.72.0
   test:
     '@vitest/coverage-v8': ^5.0.5
     '@vitest/ui': ^5.0.5
@@ -103,7 +103,7 @@ catalogs:
     magicast: ^0.5.5
     playwright-core: 1.64.1
     publint: ^0.3.25
-    rolldown: ^1.2.14
+    rolldown: ^1.2.15
     taze: 21.1.0
     verkit: ^0.5.0
     vite: ^8.3.5
