@@ -53,6 +53,7 @@ export function createSvelteKitPWAContext<
     },
   ) as SvelteKitPWAContext<UserStrategy, T>
 
+  ctx.disableTransformIndexHtmlPluginHooks = true
   ctx.configurePWAOptions = createPWAConfigurer(ctx)
 
   return ctx
