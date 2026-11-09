@@ -99,7 +99,6 @@ jobs:
             ${{ runner.os }}-playwright-bin-v1-
 
       - name: Install Playwright
-        # does not need to explicitly set chromium after https://github.com/microsoft/playwright/issues/14862 is solved
         run: pnpm exec playwright install chromium
 
       - name: Build
