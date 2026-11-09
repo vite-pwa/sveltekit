@@ -42,7 +42,7 @@ catalogs:
     tsdown: ^0.23.4
   eslint:
     '@antfu/eslint-config': ^10.0.0
-    eslint: ^10.13.0
+    eslint: ^10.14.0
     eslint-plugin-antfu: ^3.3.1
     eslint-plugin-svelte: ^3.23.1
   pwa:
@@ -79,10 +79,10 @@ catalogs:
     '@sveltejs/kit': ^3.1.1
     '@sveltejs/vite-plugin-svelte': ^7.3.1
     cookie: ^2.0.1
-    globals: ^17.13.0
+    globals: ^17.14.0
     svelte: ^5.57.3
     svelte-check: ^4.7.8
-    typescript-eslint: ^8.72.0
+    typescript-eslint: ^8.72.1
   test:
     '@vitest/coverage-v8': ^5.0.5
     '@vitest/ui': ^5.0.5
@@ -98,15 +98,15 @@ catalogs:
     '@playwright/test': 1.64.1
     '@vitejs/devtools': ^0.7.6
     '@vitejs/devtools-kit': ^0.7.6
-    devframe: ^1.2.6
+    devframe: ^1.3.2
     https-localhost: 4.7.2
     magicast: ^0.5.5
     playwright-core: 1.64.1
     publint: ^0.3.25
-    rolldown: ^1.2.15
+    rolldown: ^1.2.16
     taze: 21.1.0
     verkit: ^0.5.0
-    vite: ^8.3.5
+    vite: ^8.3.7
     vite-plugin-inspect: ^12.1.0
     why-is-node-running: 3.2.3
   # vite 5
@@ -138,6 +138,22 @@ minimumReleaseAgeExclude:
   - '@vite-pwa/workbox-build'
   - '@vite-pwa/workbox-swkit'
   - '@vite-pwa/workbox-window'
+  - '@rolldown/binding-android-arm-eabi@1.2.18'
+  - '@rolldown/binding-android-arm64@1.2.18'
+  - '@rolldown/binding-darwin-arm64@1.2.18'
+  - '@rolldown/binding-darwin-x64@1.2.18'
+  - '@rolldown/binding-freebsd-x64@1.2.18'
+  - '@rolldown/binding-linux-arm-gnueabihf@1.2.18'
+  - '@rolldown/binding-linux-arm64-gnu@1.2.18'
+  - '@rolldown/binding-linux-arm64-musl@1.2.18'
+  - '@rolldown/binding-linux-ppc64-gnu@1.2.18'
+  - '@rolldown/binding-linux-s390x-gnu@1.2.18'
+  - '@rolldown/binding-linux-x64-gnu@1.2.18'
+  - '@rolldown/binding-linux-x64-musl@1.2.18'
+  - '@rolldown/binding-openharmony-arm64@1.2.18'
+  - '@rolldown/binding-win32-arm64-msvc@1.2.18'
+  - '@rolldown/binding-win32-x64-msvc@1.2.18'
+  - rolldown@1.2.18
 
 supportedArchitectures:
   os:
