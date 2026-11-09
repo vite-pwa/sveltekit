@@ -125,6 +125,8 @@ export default {
 }
 ```
 
+Read the [📖 v2.x documentation](https://unplugin-pwa.netlify.app/frameworks/sveltekit) for a complete guide on how to configure and use this plugin.
+
 ### v1.x (Legacy SvelteKit < 2.63.0)
 
 Add `SvelteKitPWA` plugin to `vite.config.js / vite.config.ts` and configure it.
@@ -142,8 +144,7 @@ export default {
 }
 ```
 
-Read the [📖 documentation](https://unplugin-pwa.netlify.app/frameworks/sveltekit) for a complete guide on how to configure and use
-this plugin.
+Read the [📖 v1.x documentation](https://vite-pwa-org.netlify.app/frameworks/sveltekit) for a complete guide on how to configure and use this plugin.
 
 ## 👀 Full config
 
