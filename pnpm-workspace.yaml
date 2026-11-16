@@ -27,7 +27,7 @@ overrides:
   '@types/node': 'catalog:types'
   chokidar: ^5.0.0
   sharp: ^0.35.5
-  semver: ^7.8.5
+  semver: ^7.8.6
   why-is-node-running: 'catalog:utils'
 
 allowBuilds:
@@ -39,12 +39,12 @@ allowBuilds:
 
 catalogs:
   build:
-    tsdown: ^0.23.4
+    tsdown: ^0.23.7
   eslint:
     '@antfu/eslint-config': ^10.0.0
     eslint: ^10.14.0
     eslint-plugin-antfu: ^3.3.1
-    eslint-plugin-svelte: ^3.23.1
+    eslint-plugin-svelte: ^3.24.1
   pwa:
     '@unplugin-pwa/core': ^0.0.5
     '@unplugin-pwa/inspector': ^0.0.5
@@ -71,22 +71,22 @@ catalogs:
     svelte-check: npm:svelte-check@4.7.8
   sveltekit3:
     "@eslint/js": ^10.0.1
-    '@sveltejs/adapter-node': ^6.0.1
+    '@sveltejs/adapter-node': ^6.0.2
     '@sveltejs/adapter-static': ^4.0.1
     # broken versions
     #    '@sveltejs/adapter-node': 6.0.0-next.10
     #    '@sveltejs/adapter-static': 4.0.0-next.4
-    '@sveltejs/kit': ^3.1.1
+    '@sveltejs/kit': ^3.2.0
     '@sveltejs/vite-plugin-svelte': ^7.3.1
-    cookie: ^2.0.1
+    cookie: ^2.0.2
     globals: ^17.14.0
     svelte: ^5.57.3
     svelte-check: ^4.7.8
     typescript-eslint: ^8.72.1
   test:
-    '@vitest/coverage-v8': ^5.0.5
-    '@vitest/ui': ^5.0.5
-    vitest: ^5.0.5
+    '@vitest/coverage-v8': ^5.1.0
+    '@vitest/ui': ^5.1.0
+    vitest: ^5.1.0
   types:
     '@types/debug': ^4.1.13
     '@types/node': 24.19.2
@@ -95,18 +95,18 @@ catalogs:
   utils:
     '@antfu/ni': ^25.0.0
     '@arethetypeswrong/core': ^0.18.5
-    '@playwright/test': 1.64.1
+    '@playwright/test': 1.65.0
     '@vitejs/devtools': ^0.7.6
     '@vitejs/devtools-kit': ^0.7.6
     devframe: ^1.3.2
     https-localhost: 4.7.2
     magicast: ^0.5.5
-    playwright-core: 1.64.1
+    playwright-core: 1.65.0
     publint: ^0.3.25
-    rolldown: ^1.2.16
+    rolldown: ^1.3.1
     taze: 21.1.0
     verkit: ^0.5.0
-    vite: ^8.3.7
+    vite: ^8.3.8
     vite-plugin-inspect: ^12.1.0
     why-is-node-running: 3.2.3
   # vite 5
