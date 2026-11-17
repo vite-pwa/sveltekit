@@ -19,6 +19,9 @@ shellEmulator: true
 strictPeerDependencies: false
 
 trustPolicy: no-downgrade
+#trustPolicyExclude:
+#  - '@sveltejs/kit@3.2.0'
+#  - 'svelte-eslint-parser@1.10.1'
 
 packages:
   - examples/**
@@ -26,6 +29,7 @@ packages:
 overrides:
   '@types/node': 'catalog:types'
   chokidar: ^5.0.0
+  rolldown: 'catalog:utils'
   sharp: ^0.35.5
   semver: ^7.8.6
   why-is-node-running: 'catalog:utils'
@@ -46,9 +50,9 @@ catalogs:
     eslint-plugin-antfu: ^3.3.1
     eslint-plugin-svelte: ^3.24.1
   pwa:
-    '@unplugin-pwa/core': ^0.0.5
-    '@unplugin-pwa/inspector': ^0.0.5
-    '@unplugin-pwa/vite': ^0.0.5
+    '@unplugin-pwa/core': ^0.0.7
+    '@unplugin-pwa/inspector': ^0.0.7
+    '@unplugin-pwa/vite': ^0.0.7
     '@vite-pwa/assets-generator': ^2.0.0
     '@vite-pwa/workbox-build': ^8.0.15
     '@vite-pwa/workbox-swkit': ^8.0.15
@@ -103,7 +107,7 @@ catalogs:
     magicast: ^0.5.5
     playwright-core: 1.65.0
     publint: ^0.3.25
-    rolldown: ^1.3.1
+    rolldown: 1.2.19
     taze: 21.1.0
     verkit: ^0.5.0
     vite: ^8.3.8
@@ -138,22 +142,6 @@ minimumReleaseAgeExclude:
   - '@vite-pwa/workbox-build'
   - '@vite-pwa/workbox-swkit'
   - '@vite-pwa/workbox-window'
-  - '@rolldown/binding-android-arm-eabi@1.2.18'
-  - '@rolldown/binding-android-arm64@1.2.18'
-  - '@rolldown/binding-darwin-arm64@1.2.18'
-  - '@rolldown/binding-darwin-x64@1.2.18'
-  - '@rolldown/binding-freebsd-x64@1.2.18'
-  - '@rolldown/binding-linux-arm-gnueabihf@1.2.18'
-  - '@rolldown/binding-linux-arm64-gnu@1.2.18'
-  - '@rolldown/binding-linux-arm64-musl@1.2.18'
-  - '@rolldown/binding-linux-ppc64-gnu@1.2.18'
-  - '@rolldown/binding-linux-s390x-gnu@1.2.18'
-  - '@rolldown/binding-linux-x64-gnu@1.2.18'
-  - '@rolldown/binding-linux-x64-musl@1.2.18'
-  - '@rolldown/binding-openharmony-arm64@1.2.18'
-  - '@rolldown/binding-win32-arm64-msvc@1.2.18'
-  - '@rolldown/binding-win32-x64-msvc@1.2.18'
-  - rolldown@1.2.18
 
 supportedArchitectures:
   os:
