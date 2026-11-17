@@ -40,6 +40,10 @@ export default defineConfig({
     '@typescript-eslint/eslint-parser@8.16.0',
     '@types/cookie@0.6.0',
     'cookie@0.6.0',
+    // unpin rolldown once Vite 8.4 released
+    // we need both, Vite and Rolldown:
+    // using Vite 8.3 with Rolldown 1.3 can cause Vite apps to generated wrong builds
+    'rolldown',
   ],
   githubActions: {
     style: 'sha',
