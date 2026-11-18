@@ -383,6 +383,69 @@ importers:
         specifier: catalog:vite-plugin-inspect-ancient
         version: 0.7.42(rollup@4.67.2)(supports-color@7.2.0)(vite@5.3.6)
 
+  examples/sveltekit-ts-auto-update:
+    devDependencies:
+      '@eslint/js':
+        specifier: catalog:sveltekit3
+        version: 10.0.1(eslint@10.14.0)
+      '@playwright/test':
+        specifier: catalog:utils
+        version: 1.65.0
+      '@sveltejs/adapter-node':
+        specifier: catalog:sveltekit3
+        version: 6.0.2(@sveltejs/kit@3.2.0)
+      '@sveltejs/adapter-static':
+        specifier: catalog:sveltekit3
+        version: 4.0.1(@sveltejs/kit@3.2.0)
+      '@sveltejs/kit':
+        specifier: catalog:sveltekit3
+        version: 3.2.0(@sveltejs/vite-plugin-svelte@7.3.1)(svelte@5.57.3)(typescript@6.0.3)(vite@8.3.8)
+      '@sveltejs/vite-plugin-svelte':
+        specifier: catalog:sveltekit3
+        version: 7.3.1(svelte@5.57.3)(vite@8.3.8)
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
+      '@vite-pwa/sveltekit':
+        specifier: workspace:*
+        version: link:../..
+      '@vitejs/devtools':
+        specifier: catalog:utils
+        version: 0.7.6(@devframes/json-render@1.2.6)(crossws@0.4.17)(srvx@1.0.8)(vite@8.3.8)
+      cookie:
+        specifier: catalog:sveltekit3
+        version: 2.0.2
+      eslint:
+        specifier: catalog:eslint
+        version: 10.14.0(jiti@2.7.0)(supports-color@7.2.0)
+      eslint-plugin-svelte:
+        specifier: catalog:eslint
+        version: 3.24.1(eslint@10.14.0)(svelte@5.57.3)
+      globals:
+        specifier: catalog:sveltekit3
+        version: 17.14.0
+      svelte:
+        specifier: catalog:sveltekit3
+        version: 5.57.3(@typescript-eslint/types@8.72.1)
+      svelte-check:
+        specifier: catalog:sveltekit3
+        version: 4.7.8(picomatch@4.0.7)(svelte@5.57.3)(typescript@6.0.3)
+      typescript:
+        specifier: catalog:typescript
+        version: 6.0.3
+      typescript-eslint:
+        specifier: catalog:sveltekit3
+        version: 8.72.1(eslint@10.14.0)(supports-color@7.2.0)(typescript@6.0.3)
+      vite:
+        specifier: catalog:utils
+        version: 8.3.8(@types/node@24.19.2)(@vitejs/devtools@0.7.6)(jiti@2.7.0)(yaml@2.9.1)
+      vite-plugin-inspect:
+        specifier: catalog:utils
+        version: 12.1.0(@devframes/agentic@1.2.6)(cac@7.1.0)(crossws@0.4.17)(srvx@1.0.8)(vite@8.3.8)
+      vitest:
+        specifier: catalog:test
+        version: 5.1.0(@types/node@24.19.2)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(vite@8.3.8)
+
   examples/sveltekit-ts-legacy:
     dependencies:
       '@fontsource/fira-mono':

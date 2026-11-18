@@ -1,0 +1,48 @@
+{
+	"name": "sveltekit-ts-auto-update",
+	"type": "module",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite dev",
+		"dev-suppress-w": "SUPPRESS_WARNING=true vite dev",
+		"build-sw": "vite build",
+		"build-sw-node": "NODE_ADAPTER=true vite build",
+		"preview": "vite preview",
+		"preview-node": "PORT=4173 node build",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"test-sw": "nr build-sw && vitest run && playwright test",
+		"test-sw-node": "nr build-sw-node && NODE_ADAPTER=true vitest run && NODE_ADAPTER=true playwright test",
+		"test": "nr test-sw && nr test-sw-node"
+	},
+	"devDependencies": {
+		"@eslint/js": "catalog:sveltekit3",
+		"@playwright/test": "catalog:utils",
+		"@sveltejs/adapter-node": "catalog:sveltekit3",
+		"@sveltejs/adapter-static": "catalog:sveltekit3",
+		"@sveltejs/kit": "catalog:sveltekit3",
+		"@sveltejs/vite-plugin-svelte": "catalog:sveltekit3",
+		"@types/node": "catalog:types",
+		"@vite-pwa/sveltekit": "workspace:*",
+		"@vitejs/devtools": "catalog:utils",
+		"cookie": "catalog:sveltekit3",
+		"eslint": "catalog:eslint",
+		"eslint-plugin-svelte": "catalog:eslint",
+		"globals": "catalog:sveltekit3",
+		"svelte": "catalog:sveltekit3",
+		"svelte-check": "catalog:sveltekit3",
+		"typescript": "catalog:typescript",
+		"typescript-eslint": "catalog:sveltekit3",
+		"vite": "catalog:utils",
+		"vite-plugin-inspect": "catalog:utils",
+		"vitest": "catalog:test"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
+	}
+}
