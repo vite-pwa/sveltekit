@@ -40,6 +40,7 @@ export default defineConfig({
 			{
 				// you don't need to do this if you're using generateSW strategy in your app
 				strategies: 'generateSW',
+				registerType: 'autoUpdate',
 				// tests with classic, dev with dual
 				swType: process.env.NODE_ENV === 'production' ? 'classic' : 'classic-and-module',
 				injectRegister: false,
