@@ -50,9 +50,9 @@ catalogs:
     eslint-plugin-antfu: ^3.3.1
     eslint-plugin-svelte: ^3.24.1
   pwa:
-    '@unplugin-pwa/core': ^0.0.7
-    '@unplugin-pwa/inspector': ^0.0.7
-    '@unplugin-pwa/vite': ^0.0.7
+    '@unplugin-pwa/core': ^0.0.8
+    '@unplugin-pwa/inspector': ^0.0.8
+    '@unplugin-pwa/vite': ^0.0.8
     '@vite-pwa/assets-generator': ^2.0.0
     '@vite-pwa/workbox-build': ^8.0.15
     '@vite-pwa/workbox-swkit': ^8.0.15

@@ -25,14 +25,14 @@ catalogs:
       version: 3.24.1
   pwa:
     '@unplugin-pwa/core':
-      specifier: ^0.0.7
-      version: 0.0.7
+      specifier: ^0.0.8
+      version: 0.0.8
     '@unplugin-pwa/inspector':
-      specifier: ^0.0.7
-      version: 0.0.7
+      specifier: ^0.0.8
+      version: 0.0.8
     '@unplugin-pwa/vite':
-      specifier: ^0.0.7
-      version: 0.0.7
+      specifier: ^0.0.8
+      version: 0.0.8
     '@vite-pwa/assets-generator':
       specifier: ^2.0.0
       version: 2.0.0
@@ -172,13 +172,13 @@ importers:
     dependencies:
       '@unplugin-pwa/core':
         specifier: catalog:pwa
-        version: 0.0.7(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
+        version: 0.0.8(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
       '@unplugin-pwa/inspector':
         specifier: catalog:pwa
-        version: 0.0.7
+        version: 0.0.8
       '@unplugin-pwa/vite':
         specifier: catalog:pwa
-        version: 0.0.7(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
+        version: 0.0.8(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
       '@vite-pwa/workbox-build':
         specifier: catalog:pwa
         version: 8.0.15(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
@@ -1849,8 +1849,8 @@ packages:
   '@ungap/structured-clone@1.4.0':
     resolution: {integrity: sha512-1mEZtMKPM09vDmQt5y7YvmN2+DFTP7Tg0EWXdic8/C6VRnpb33e4ghisCIE3WZjsE2N8mf+QV1Zqh7ZFYLWInQ==}
 
-  '@unplugin-pwa/core@0.0.7':
-    resolution: {integrity: sha512-tuuYolkSHpziF8mi7+J+NgVvA5XMMgMSzhaXmSxUPheYnP8U4b19NSwsJX5YsDvbniHGY3ty6E2MFEre1uEHbg==}
+  '@unplugin-pwa/core@0.0.8':
+    resolution: {integrity: sha512-2DTx1YE4VYMZ+Vz7idpFD3tgD7rp5T/Yw6KfwitkF0wkVGhgapPmNx+nysWx7N1tOCztOl11incecCASjqFsPA==}
     engines: {node: '>=22.14.0'}
     peerDependencies:
       '@vite-pwa/assets-generator': ^1.0.0 || ^2.0.0
@@ -1864,12 +1864,12 @@ packages:
       vite:
         optional: true
 
-  '@unplugin-pwa/inspector@0.0.7':
-    resolution: {integrity: sha512-DOF0pfjNy7tQHWwk+dwnqPoD76jRGJkt7JKE8WqePYe0VH+tFbS+UqIiG/bd6JEzcHwXAKXlXQW4nMSM5e7Mtw==}
+  '@unplugin-pwa/inspector@0.0.8':
+    resolution: {integrity: sha512-jCBGYa0W5j/5ayO/wjfIGBN1HSP9/LNQtwvpGG1D9+ucfCZYWRHs6xWPVp5TpAsO+fwKI4N+fh0npvUylZBUJg==}
     engines: {node: '>=22.14.0'}
 
-  '@unplugin-pwa/vite@0.0.7':
-    resolution: {integrity: sha512-5CbTqqFEhg80BCuON+i0IuIuozsLvzzSNZIUPvNojyZ/4dtcpwVKipkcKcrpL0tvfuYh9gfjt+XPiBZXYdq81Q==}
+  '@unplugin-pwa/vite@0.0.8':
+    resolution: {integrity: sha512-k+mSZL/Mk+dUZmPfi5HjdSmYPpuS3Lnj9nIl9UUpV9dlEnTiRJOj9hdbtG6lIZ0pCDKFtp6AaHFVGvbr17iGYA==}
     engines: {node: '>=22.14.0'}
     peerDependencies:
       '@vite-pwa/assets-generator': ^1.0.0 || ^2.0.0
@@ -5557,7 +5557,7 @@ snapshots:
 
   '@ungap/structured-clone@1.4.0': {}
 
-  '@unplugin-pwa/core@0.0.7(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)':
+  '@unplugin-pwa/core@0.0.8(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)':
     dependencies:
       '@vite-pwa/workbox-build': 8.0.15(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
       '@vite-pwa/workbox-window': 8.0.15
@@ -5572,13 +5572,13 @@ snapshots:
       - typescript
       - webpack
 
-  '@unplugin-pwa/inspector@0.0.7': {}
+  '@unplugin-pwa/inspector@0.0.8': {}
 
-  '@unplugin-pwa/vite@0.0.7(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)':
+  '@unplugin-pwa/vite@0.0.8(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)':
     dependencies:
       '@rolldown/pluginutils': 1.1.1
-      '@unplugin-pwa/core': 0.0.7(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
-      '@unplugin-pwa/inspector': 0.0.7
+      '@unplugin-pwa/core': 0.0.8(@vite-pwa/assets-generator@2.0.0)(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
+      '@unplugin-pwa/inspector': 0.0.8
       '@vite-pwa/workbox-build': 8.0.15(magicast@0.5.5)(rolldown@1.2.19)(typescript@6.0.3)(vite@8.3.8)
       '@vite-pwa/workbox-swkit': 8.0.15
       '@vite-pwa/workbox-window': 8.0.15
